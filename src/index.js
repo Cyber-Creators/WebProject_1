@@ -1,21 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-
-
-
+import { renderHome } from "./views/trending-view.js";
+import { q } from "./events/helpers.js";
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector("#container");
+  const renderedContent = await renderHome();
+  container.appendChild(renderedContent);
 
   // add global listener
-  document.addEventListener('click', event => {
-
-  
-
-  });
+  document.addEventListener("click", (event) => {});
 
   // search events
-  q('input#search').addEventListener('input', event => {
+  q("input#search").addEventListener("input", (event) => {
     renderSearchItems(event.target.value);
   });
 
-  loadPage(HOME);
-
+  // loadPage(HOME);
 });
