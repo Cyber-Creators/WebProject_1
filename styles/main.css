@@ -102,6 +102,7 @@ span.favorite:hover {
 
 /* Add your styles below */
 
+/* Trending page (home page) */
 .trendingContainer img {
   width: 300px;
   height: 300px;
@@ -110,4 +111,12 @@ span.favorite:hover {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 15px;
+}
+
+.trending {
+  font-size: 27px;
+}
+.trending i {
+  padding: 15px;
+  color: aquamarine;
 }

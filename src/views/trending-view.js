@@ -1,6 +1,6 @@
 const key = "OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON";
 const key2 = "mvRJrWupzEx2WaJ8TDgcGOOXXcPXH3mF";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key2}&limit=20`;
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=20`;
 
 async function getData() {
   try {
@@ -28,9 +28,10 @@ export async function renderHome() {
     return "<h1>Error rendering home page</h1>";
   }
 }
-/*
-<div>
-    <img/>
-</div>
 
-*/
+export function trendingTitle() {
+  const trendingTitle = document.createElement("h3");
+  trendingTitle.innerHTML = `<i class="fa-solid fa-arrow-trend-up fa-xl"></i>Trending`;
+  trendingTitle.className = "trending";
+  return trendingTitle;
+}

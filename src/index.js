@@ -1,7 +1,8 @@
-import { renderHome } from "./views/trending-view.js";
+import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { q } from "./events/helpers.js";
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#container");
+  container.appendChild(trendingTitle());
   const renderedContent = await renderHome();
   container.appendChild(renderedContent);
 
