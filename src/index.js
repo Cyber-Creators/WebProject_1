@@ -7,13 +7,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   container.appendChild(renderedContent);
 
   // add global listener for "click" events -> filter clicks by element id
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", async (event) => {
 
     if (event.target.id === "searchBtn") {
 
-      const searchString = document.getElementById("search").value;
+      try {
 
-      console.log(searchString);
+      const searchString = document.querySelector("input#search").value;
+
+      const api_key = 'OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON';
+
+      const search_api = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchString}&limit=5`;
+
+      console.log(search_api);
+
+      const data = await fetch(search_api);
+
+      console.log(data.json());
+
+
+      } catch (error) {
+        console.log(error.message);
+      }
+
 
 
 
