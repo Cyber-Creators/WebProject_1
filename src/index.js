@@ -1,5 +1,5 @@
 import { renderHome, trendingTitle } from "./views/trending-view.js";
-import { q } from "./events/helpers.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#container");
   container.appendChild(trendingTitle());
@@ -12,27 +12,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.id === "searchBtn") {
 
       try {
-
           const api_key = 'OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON';
           const searchString = document.querySelector("input#search").value;
-
           const data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchString}&limit=5`);
           const jsonData = await data.json();
-      
-          console.log(jsonData.data);
+    
+          const html = `
+          <div id="allGifsContainer">
+              ${jsonData.data.map(item => {
+                return `<div id="gifContainer">
+                            <img src="${item.images.fixed_height.webp}">
+                        </div>`;
+                })
+                .join('\n')
+              }
+          </div>`;
 
-          jsonData.data.map(item => {
+          document.querySelector("div#container").innerHTML = html;
 
-            const imageContainer = document.createElement('div');
-            const gifImage = document.createElement('img');
-            gifImage.src = item.images.fixed_height.webp;
-            imageContainer.appendChild(gifImage);
-            document.querySelector("div#container").appendChild(imageContainer);
-
-          });
-
-      } catch (error) {
-        console.log(error.message);
+      } catch (e) {
+        console.log(e.message);
       }
 
     }
