@@ -1,6 +1,6 @@
 const key = "OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON";
 const key2 = "mvRJrWupzEx2WaJ8TDgcGOOXXcPXH3mF";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=1`;
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=20`;
 
 async function getData() {
   try {
