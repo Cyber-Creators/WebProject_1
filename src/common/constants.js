@@ -1,4 +1,4 @@
-export const HOME = 'home';
+export const API_KEY = 'OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON';
 
 export const CATEGORIES = 'categories';
 
