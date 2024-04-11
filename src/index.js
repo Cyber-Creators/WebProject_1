@@ -13,26 +13,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
 
-      const searchString = document.querySelector("input#search").value;
+          const api_key = 'OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON';
+          const searchString = document.querySelector("input#search").value;
 
-      const api_key = 'OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON';
+          const data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchString}&limit=5`);
+          const jsonData = await data.json();
+      
+          console.log(jsonData.data);
 
-      const search_api = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchString}&limit=5`;
+          jsonData.data.map(item => {
 
-      console.log(search_api);
+            const imageContainer = document.createElement('div');
+            const gifImage = document.createElement('img');
+            gifImage.src = item.images.fixed_height.webp;
+            imageContainer.appendChild(gifImage);
+            document.querySelector("div#container").appendChild(imageContainer);
 
-      const data = await fetch(search_api);
-
-      console.log(data.json());
-
+          });
 
       } catch (error) {
         console.log(error.message);
       }
-
-
-
-
 
     }
 
