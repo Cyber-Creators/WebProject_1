@@ -8,16 +8,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   container.appendChild(renderedContent);
 
   // add global listener for "click" events -> filter clicks by element id
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", async (event) => {
 
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
-      document.querySelector("div#container").innerHTML = searchByString(searchString);
+      document.querySelector("div#container").innerHTML = await searchByString(searchString);
     }
 
   });
 
 
-  
+
 
 });
