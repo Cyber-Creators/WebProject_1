@@ -106,6 +106,7 @@ span.favorite:hover {
 .trendingContainer img {
   width: 300px;
   height: 300px;
+  cursor: pointer;
 }
 .trendingContainer {
   display: grid;
@@ -119,4 +120,53 @@ span.favorite:hover {
 .trending i {
   padding: 15px;
   color: aquamarine;
+}
+
+/* Giphy details */
+
+.divDetails {
+  display: none;
+  height: 250px;
+  width: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgba(32, 30, 30, 0.547);
+  border: 3px solid black;
+  z-index: 1000000;
+  backdrop-filter: blur(10px);
+
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  color: aquamarine;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.617);
+}
+.divDetails img {
+  float: left;
+  width: 250px;
+  height: 250px;
+  padding-right: 15px;
+}
+
+.divDetails h3 {
+  text-align: center;
+}
+
+#name {
+  font-weight: bold;
+  color: rgb(64, 113, 140);
+  font-size: 22px;
+}
+
+.divDetails a {
+  text-decoration: none;
+  color: aquamarine;
+  cursor: pointer;
+}
+
+.bodyBlur {
+  filter: blur(10px);
 }
