@@ -6,13 +6,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   const renderedContent = await renderHome();
   container.appendChild(renderedContent);
 
-  // add global listener
-  document.addEventListener("click", (event) => {});
+  // add global listener for "click" events -> filter clicks by element id
+  document.addEventListener("click", (event) => {
 
-  // search events
-  q("input#search").addEventListener("input", (event) => {
-    renderSearchItems(event.target.value);
+    if (event.target.id === "searchBtn") {
+
+      const searchString = document.getElementById("search").value;
+
+      console.log(searchString);
+
+
+
+
+    }
+
   });
 
-  // loadPage(HOME);
 });
