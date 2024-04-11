@@ -166,7 +166,3 @@ span.favorite:hover {
   color: aquamarine;
   cursor: pointer;
 }
-
-.bodyBlur {
-  filter: blur(10px);
-}
