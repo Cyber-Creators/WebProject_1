@@ -17,7 +17,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.classList.contains("giphyImg")) {
       await renderDetails(event.target.id, detailsDiv);
       detailsDiv.style.display = "block";
-    } else {
+    } else if (
+      !(
+        event.target.classList.contains("giphyImg") &&
+        !(event.target.id === "uploadNav")
+      )
+    ) {
       detailsDiv.style.display = "none";
     }
 
