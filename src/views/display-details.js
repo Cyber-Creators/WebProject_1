@@ -1,6 +1,5 @@
-import { getData } from "./trending-view.js";
-const key = "OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON";
-const key2 = "mvRJrWupzEx2WaJ8TDgcGOOXXcPXH3mF";
+import { API_KEY, API_KEY2 } from "../common/constants.js";
+import { getData } from "../requests/request-service.js";
 
 export function Details() {
   const divDetail = document.createElement("div");
@@ -9,7 +8,7 @@ export function Details() {
 }
 
 export async function renderDetails(id, div) {
-  const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${key2}`;
+  const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY}`;
   const data = await getData(url);
   console.log(data);
   div.innerHTML = `
