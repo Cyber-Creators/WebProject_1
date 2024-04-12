@@ -1,4 +1,5 @@
 import { searchByString } from "./requests/request-service.js";
+import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { qs, q } from "./events/helpers.js";
@@ -21,11 +22,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // add global listener for "click" events -> filter clicks by element id
   document.addEventListener("click", async (event) => {
+
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
-      document.querySelector("div#container").innerHTML = await searchByString(
-        searchString
-      );
+      document.querySelector("div#container").innerHTML = await searchByString(searchString);
     }
+
+    if (event.target.id === "uploadNav") {
+      document.querySelector("div#container").innerHTML = await generateUploadForm();
+
+      
+
+    }
+
   });
+
+
 });
