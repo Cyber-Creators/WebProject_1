@@ -10,34 +10,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   container.appendChild(await renderHome());
   container.appendChild(Details());
 
-  document.addEventListener("click", async (e) => {
+  // add global listener for "click" events -> filter clicks by element id
+  document.addEventListener("click", async (event) => {
     const detailsDiv = q(".divDetails");
-    if (e.target.classList.contains("giphyImg")) {
-      await renderDetails(e.target.id, detailsDiv);
+    if (event.target.classList.contains("giphyImg")) {
+      await renderDetails(event.target.id, detailsDiv);
       detailsDiv.style.display = "block";
     } else {
       detailsDiv.style.display = "none";
     }
-  });
-
-  // add global listener for "click" events -> filter clicks by element id
-  document.addEventListener("click", async (event) => {
 
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
-      document.querySelector("div#container").innerHTML = await searchByString(searchString);
+      document.querySelector("div#container").innerHTML = await searchByString(
+        searchString
+      );
     }
 
     if (event.target.id === "uploadNav") {
-      document.querySelector("div#container").innerHTML = await generateUploadForm();
+      document.querySelector("div#container").innerHTML =
+        await generateUploadForm();
     }
-
   });
 
   document.addEventListener("submit", async (event) => {
-
     if (event.target.id === "myUploadForm") {
-
       event.preventDefault();
 
       const fileInput = document.querySelector("input#file");
@@ -46,15 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       formdata.append("file", fileInput.files[0]);
 
-      const data = await fetch(`https://upload.giphy.com/v1/gifs?api_key=KtzPyAoJb9AgzuM037P7pcTReo7AnuBZ`, {  
+      const data = await fetch(
+        `https://upload.giphy.com/v1/gifs?api_key=KtzPyAoJb9AgzuM037P7pcTReo7AnuBZ`,
+        {
           method: "POST",
           body: formdata,
         }
       );
-
     }
-
   });
-
-
 });
