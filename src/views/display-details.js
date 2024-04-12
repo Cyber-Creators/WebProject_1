@@ -10,7 +10,6 @@ export function Details() {
 export async function renderDetails(id, div) {
   const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY}`;
   const data = await getData(url);
-  console.log(data);
   div.innerHTML = `
   <img src="${data.data.images.original.url} alt="" />
   <h3>${data.data.title}</h3>
