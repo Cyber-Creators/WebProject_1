@@ -18,11 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       await renderDetails(event.target.id, detailsDiv);
       detailsDiv.style.display = "block";
     } else if (
-      !(
-        event.target.classList.contains("giphyImg") &&
-        !(event.target.id === "uploadNav") &&
-        !(event.target.id === "searchBtn")
-      )
+      event.target.id === "container" ||
+      event.target.classList.contains("trending")
     ) {
       detailsDiv.style.display = "none";
     }
