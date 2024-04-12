@@ -1,6 +1,6 @@
 import { API_KEY, API_KEY2 } from "../common/constants.js";
 import { getData } from "../requests/request-service.js";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY2}&limit=20`;
 
 export async function renderHome() {
   try {
