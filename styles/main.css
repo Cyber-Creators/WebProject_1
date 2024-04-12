@@ -87,11 +87,6 @@ input#search {
   outline: none;
 }
 
-span.favorite {
-  padding-left: 10px;
-  cursor: pointer;
-}
-
 span.favorite.active {
   color: rgb(255, 0, 149);
 }
@@ -170,4 +165,14 @@ span.favorite:hover {
   text-decoration: none;
   color: aquamarine;
   cursor: pointer;
+}
+
+/* favorites */
+.favorite {
+  color: rgb(189, 108, 171);
+  cursor: pointer;
+  position: relative;
+  left: 130px;
+  bottom: 70px;
+  font-size: 80px;
 }
