@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (
       !(
         event.target.classList.contains("giphyImg") &&
-        !(event.target.id === "uploadNav")
+        !(event.target.id === "uploadNav") &&
+        !(event.target.id === "searchBtn")
       )
     ) {
       detailsDiv.style.display = "none";
