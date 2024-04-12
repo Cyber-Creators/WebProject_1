@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // add global listener for "click" events -> filter clicks by element id
   document.addEventListener("click", async (event) => {
+    /* renderDetails */
     const detailsDiv = q(".divDetails");
     if (event.target.classList.contains("giphyImg")) {
       await renderDetails(event.target.id, detailsDiv);
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       detailsDiv.style.display = "none";
     }
 
+    /* Search */
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
       document.querySelector("div#container").innerHTML = await searchByString(
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
 
+    /* Upload form */
     if (event.target.id === "uploadNav") {
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
