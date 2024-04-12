@@ -1,16 +1,6 @@
-const key = "OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON";
-const key2 = "mvRJrWupzEx2WaJ8TDgcGOOXXcPXH3mF";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key2}&limit=20`;
-
-export async function getData(url) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(`Error: ${error}`);
-  }
-}
+import { API_KEY, API_KEY2 } from "../common/constants.js";
+import { getData } from "../requests/request-service.js";
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
 
 export async function renderHome() {
   try {
