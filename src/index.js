@@ -1,21 +1,20 @@
 import { searchByString } from "./requests/request-service.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
+import { qs, q } from "./events/helpers.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const detailsView = Details();
-  const renderedContent = await renderHome();
-  const container = document.querySelector("#container");
+  const container = q("#container");
   container.appendChild(trendingTitle());
-  container.appendChild(renderedContent);
-  container.appendChild(detailsView);
+  container.appendChild(await renderHome());
+  container.appendChild(Details());
+
   document.addEventListener("click", async (e) => {
+    const detailsDiv = q(".divDetails");
     if (e.target.classList.contains("giphyImg")) {
-      const detailsDiv = document.querySelector(".divDetails");
       await renderDetails(e.target.id, detailsDiv);
       detailsDiv.style.display = "block";
     } else {
-      const detailsDiv = document.querySelector(".divDetails");
       detailsDiv.style.display = "none";
     }
   });
