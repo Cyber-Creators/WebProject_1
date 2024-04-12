@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background: url("../images/dark-linen.png") repeat;
+  background: url("../images/photo-1620641788421-7a1c342ea42e.avif") repeat;
   font-family: "Roboto", sans-serif;
 }
 
@@ -27,13 +27,13 @@ div#app {
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/banner-top.png");
+  background: url("../images/1_gtNsG-pHDrCIm20_ouAQNQ\ \(1\).gif");
 }
 
 nav {
   grid-area: menu;
   height: 60px;
-  background: url("../images//banner-bottom.png");
+  background-color: rgba(0, 0, 0, 0.692);
   font-size: 1.75em;
   line-height: 60px;
   padding: 20px;
@@ -78,11 +78,13 @@ input#search {
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  border: 1px solid gray;
+  border: 1px solid rgba(69, 182, 171, 0.438);
   border-radius: 4px;
   height: 24px;
   flex: 1 0;
   margin: auto;
+  height: 40px;
+  outline: none;
 }
 
 span.favorite {
@@ -107,15 +109,18 @@ span.favorite:hover {
   width: 300px;
   height: 300px;
   cursor: pointer;
+  border-radius: 11px;
 }
 .trendingContainer {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  gap: 15px;
+  gap: 30px;
+  justify-content: center;
 }
 
 .trending {
-  font-size: 27px;
+  font-size: 30px;
+  text-shadow: 2px -2px 2px tan;
 }
 .trending i {
   padding: 15px;
@@ -127,7 +132,7 @@ span.favorite:hover {
 .divDetails {
   display: none;
   height: 250px;
-  width: 450px;
+  width: 500px;
   position: fixed;
   top: 50%;
   left: 50%;
