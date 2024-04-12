@@ -30,8 +30,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (event.target.id === "uploadNav") {
       document.querySelector("div#container").innerHTML = await generateUploadForm();
+    }
 
-      
+  });
+
+  document.addEventListener("submit", async (event) => {
+
+    if (event.target.id === "myUploadForm") {
+
+      event.preventDefault();
+
+      const fileInput = document.querySelector("input#file");
+
+      const formdata = new FormData();
+
+      formdata.append("file", fileInput.files[0]);
+
+      const data = await fetch(`https://upload.giphy.com/v1/gifs?api_key=KtzPyAoJb9AgzuM037P7pcTReo7AnuBZ`, {  
+          method: "POST",
+          body: formdata,
+        }
+      );
 
     }
 
