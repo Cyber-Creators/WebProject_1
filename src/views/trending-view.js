@@ -1,25 +1,17 @@
-const key = "OjO2azlZWV1Y4SABaT4Nuw1bsaHIJKON";
-const key2 = "mvRJrWupzEx2WaJ8TDgcGOOXXcPXH3mF";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=20`;
-
-async function getData() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(`Error: ${error}`);
-  }
-}
+import { API_KEY, API_KEY2 } from "../common/constants.js";
+import { getData } from "../requests/request-service.js";
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
 
 export async function renderHome() {
   try {
-    const data = await getData();
+    const data = await getData(url);
     const div = document.createElement("div");
     div.classList = "trendingContainer";
     for (let el of data.data) {
       const gifImg = document.createElement("img");
       gifImg.src = el.images.fixed_height.url;
+      gifImg.id = el.id;
+      gifImg.className = "giphyImg";
       div.appendChild(gifImg);
     }
     return div;
