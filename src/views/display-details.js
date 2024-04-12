@@ -1,5 +1,6 @@
 import { API_KEY, API_KEY2 } from "../common/constants.js";
 import { getData } from "../requests/request-service.js";
+import { EMPTY_HEART, FULL_HEART } from "../common/constants.js";
 
 export function Details() {
   const divDetail = document.createElement("div");
@@ -20,6 +21,7 @@ export async function renderDetails(id, div) {
   <p>rating: ${data.data.rating}</p>
   <a href=${
     data.data.embed_url
-  } target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: #63E6BE;"></i>  Giffy</a>
+  } target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: #63E6BE;"></i>  Giffy</a><br />
+  <span class="favorite" >${EMPTY_HEART}</span>
   `;
 }
