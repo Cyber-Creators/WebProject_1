@@ -23,12 +23,22 @@ div#app {
     "footer footer footer";
   min-height: 100vh;
 }
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+}
 
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/1_gtNsG-pHDrCIm20_ouAQNQ\ \(1\).gif");
-  background-repeat: repeat;
+  background: url("../images/giphy\ \(4\)\ \(1\).gif");
+  background-repeat: repeat-x;
+  animation: moveBackground 17s linear infinite;
+  border-bottom: 3px solid rgba(135, 7, 255, 0.117);
 }
 
 nav {
