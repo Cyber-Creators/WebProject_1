@@ -4,6 +4,10 @@ import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { qs, q } from "./events/helpers.js";
 
+if (!localStorage.getItem('uploadedGifs')) {
+  localStorage.setItem('uploadedGifs', JSON.stringify([]));
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const container = q("#container");
   container.appendChild(trendingTitle());
@@ -39,16 +43,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
     }
+
+    if (event.target.id === "uploadedGifs") {
+
+      
+
+    }
+
+
   });
 
   document.addEventListener("submit", async (event) => {
     if (event.target.id === "myUploadForm") {
-      event.preventDefault();
-
+      
+      event.preventDefault(); 
       const fileInput = document.querySelector("input#file");
-
       const formdata = new FormData();
-
       formdata.append("file", fileInput.files[0]);
 
       const data = await fetch(
@@ -58,6 +68,17 @@ document.addEventListener("DOMContentLoaded", async () => {
           body: formdata,
         }
       );
+
+      // Get the response to the POST request and obtain the ID of the uploaded gif image (the response returns it)
+      const jsonData = await data.json();
+
+      const id = jsonData.data.id;
+
+      const uploadedGifs = JSON.parse(localStorage.getItem('uploadedGifs')); // Converts the value to array (as it's string by default)
+
+      uploadedGifs.push(id); // Adds the ID of the uploaded gif image to the array
+
+      localStorage.setItem('uploadedGifs', JSON.stringify(uploadedGifs)); // Updates the localStorage with the stringified array
     }
   });
 });
