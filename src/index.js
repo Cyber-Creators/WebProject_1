@@ -41,6 +41,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
     }
+
+    if (event.target.id === "uploadedGifs") {
+
+      
+
+    }
+
+
   });
 
   document.addEventListener("submit", async (event) => {
