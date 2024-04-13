@@ -166,8 +166,12 @@ span.favorite:hover {
   font-size: 80px;
 }
 
+/* search form */
+#searchForm {
+  display: flex;
+  width: 60%;
+}
 /* search input */
-
 #search {
   color: #8707ff;
   border: 2px solid #8707ff;
