@@ -14,14 +14,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("click", async (event) => {
     /* renderDetails */
     const detailsDiv = q(".divDetails");
-    if (event.target.classList.contains("giphyImg")) {
-      await renderDetails(event.target.id, detailsDiv);
-      detailsDiv.style.display = "block";
-    } else if (
-      event.target.id === "container" ||
-      event.target.classList.contains("trending")
-    ) {
-      detailsDiv.style.display = "none";
+    if (detailsDiv) {
+      if (event.target.classList.contains("giphyImg")) {
+        await renderDetails(event.target.id, detailsDiv);
+        detailsDiv.style.display = "block";
+      } else if (
+        event.target.id === "container" ||
+        event.target.classList.contains("trending")
+      ) {
+        detailsDiv.style.display = "none";
+      }
     }
 
     /* Search */
