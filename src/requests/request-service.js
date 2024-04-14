@@ -13,7 +13,11 @@ export const searchByString = async (searchString) => {
   }
 };
 
-// Get data by url
+/**
+ * Fetches data from the specified URL.
+ * @param {string} url - The URL to fetch data from.
+ * @returns {Promise<any>} - A promise that resolves to the fetched data.
+ */
 export const getData = async (url) => {
   try {
     const response = await fetch(url);
@@ -24,7 +28,11 @@ export const getData = async (url) => {
   }
 };
 
-// Trending data
+/**
+ * Fetches trending GIF data from the Giphy API.
+ * @returns {Promise<Array<Object>>} An array of processed GIF data objects.
+ * @throws {Error} If there is an error fetching the data.
+ */
 export const getTrendingData = async () => {
   const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY2}&limit=20`;
 
@@ -42,7 +50,12 @@ export const getTrendingData = async () => {
   }
 };
 
-// Details data
+/**
+ * Retrieves details data for a given ID from the Giphy API.
+ * @param {string} id - The ID of the GIF.
+ * @returns {Promise<Object>} - A promise that resolves to an object containing the processed data.
+ * @throws {Error} - If there is an error fetching the data.
+ */
 export const getDetailsData = async (id) => {
   const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY2}`;
   try {
