@@ -15,8 +15,8 @@ export async function renderDetails(id, div) {
       <h3>${data.title}</h3>
       <hr id="hr" />
       <p>Username: <span id="name">${data.username}</span></p>
-      <p>rating: ${data.rating}</p>
-      <a href=${data.embed_url} target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: #63E6BE;"></i>  Giffy</a><br />
+      <p>rating: <span id="rating"> ${data.rating}</span></p>
+      <a href=${data.embed_url} target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: rgb(95, 191, 255);"></i>  Giffy</a><br />
       <span class="favorite" >${EMPTY_HEART}</span>
     `;
   } catch (error) {
