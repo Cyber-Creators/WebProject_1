@@ -13,6 +13,14 @@ export const searchByString = async (searchString) => {
   }
 };
 
+export const getGifsById = async () => {
+
+
+  
+
+
+};
+
 // Get data by url
 export async function getData(url) {
   try {

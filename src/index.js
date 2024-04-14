@@ -1,4 +1,4 @@
-import { searchByString } from "./requests/request-service.js";
+import { getGifsById, searchByString } from "./requests/request-service.js";
 import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (event.target.id === "uploadedGifs") {
+
+      getGifsById();
 
       
 
