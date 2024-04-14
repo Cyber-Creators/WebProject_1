@@ -41,7 +41,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         await generateUploadForm();
     }
 
+    /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
+
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
+      document.querySelector("div#container").innerHTML = await getGifsById(uploadedGifs.join(','));
+      
     }
   });
 
