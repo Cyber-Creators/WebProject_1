@@ -4,6 +4,7 @@ export const renderUploadedGifs = (jsonData) =>
       .map((item) => {
         return `<div id="gifContainer">
                   <img src="${item.images.fixed_height.webp}" id="${item.id}" class="giphyImg">
+                  <button id="deleteUploadedGif">Delete Gif</button>
               </div>`;
       })
       .join("\n")}
