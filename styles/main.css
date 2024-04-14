@@ -27,7 +27,7 @@ div#app {
   0% {
     background-position: 0 0;
   }
-  50% {
+  30% {
     background-position: 100% 0;
   }
 }
@@ -35,9 +35,9 @@ div#app {
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/giphy\ \(4\)\ \(1\).gif");
+  background: url("../images/giphy\ \(5\)\ \(2\).gif");
   background-repeat: repeat-x;
-  animation: moveBackground 17s linear infinite;
+  animation: moveBackground 22s linear infinite;
   border-bottom: 3px solid rgba(135, 7, 255, 0.117);
 }
 
