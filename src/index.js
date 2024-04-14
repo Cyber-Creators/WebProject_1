@@ -43,11 +43,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
-
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
-      document.querySelector("div#container").innerHTML = await getGifsById(uploadedGifs.join(','));
-      
+
+      console.log(uploadedGifs);
+
+      document.querySelector("div#container").innerHTML = 
+          (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
     }
+
+    
+
+
   });
 
   document.addEventListener("submit", async (event) => {
