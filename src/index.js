@@ -43,10 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
-      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
-
-      console.log(uploadedGifs);
-      
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));       
       document.querySelector("div#container").innerHTML = 
           (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
     }
@@ -54,19 +51,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.id === "deleteUploadedGif") {
 
       const idToRemove = event.target.parentNode.querySelector("img").id;
-
-      console.log(idToRemove);
-
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
 
-      console.log(uploadedGifs);
-
-
       const index = uploadedGifs.indexOf(idToRemove);
-
       uploadedGifs.splice(index, 1);
-
-      console.log(uploadedGifs);
 
       localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
 
@@ -91,16 +79,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       );
 
-      // Get the response to the POST request and obtain the ID of the uploaded gif image (the response returns it)
       const jsonData = await data.json();
-
       const id = jsonData.data.id;
-
-      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); // Converts the value to array (as it's string by default)
-
-      uploadedGifs.push(id); // Adds the ID of the uploaded gif image to the array
-
-      localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs)); // Updates the localStorage with the stringified array
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
+      uploadedGifs.push(id); 
+      localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs)); 
     }
   });
 });
