@@ -44,15 +44,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
-
-      console.log(uploadedGifs);
-
       document.querySelector("div#container").innerHTML = 
           (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
     }
 
-    
+    if (event.target.id === "deleteUploadedGif") {
 
+      const idToRemove = event.target.parentNode.querySelector("img").id;
+
+      console.log(idToRemove);
+
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
+
+      console.log(uploadedGifs);
+
+
+      const index = uploadedGifs.indexOf(idToRemove);
+
+      uploadedGifs.splice(index, 1);
+
+      console.log(uploadedGifs);
+
+      localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
+
+      document.querySelector("div#container").innerHTML = 
+          (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
+
+
+    }
 
   });
 
