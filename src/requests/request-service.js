@@ -5,7 +5,7 @@ import { searchToHtml } from "../views/search-view.js";
 export const searchByString = async (searchString) => {
   try {
     const data = await fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchString}&limit=5`
+      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchString}&limit=10`
     );
     const jsonData = await data.json();
     return searchToHtml(jsonData);
