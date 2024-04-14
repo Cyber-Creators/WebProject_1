@@ -1,4 +1,5 @@
 import { API_KEY, API_KEY2 } from "../common/constants.js";
+import { renderUploadedGifs } from "../views/history-view.js";
 import { searchToHtml } from "../views/search-view.js";
 
 export const searchByString = async (searchString) => {
@@ -8,6 +9,16 @@ export const searchByString = async (searchString) => {
     );
     const jsonData = await data.json();
     return searchToHtml(jsonData);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const getGifsById = async (ids) => {
+  try {
+    const data = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`);
+    const jsonData = await data.json();
+    return renderUploadedGifs(jsonData);
   } catch (e) {
     console.log(e.message);
   }
