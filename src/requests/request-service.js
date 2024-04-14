@@ -14,7 +14,7 @@ export const searchByString = async (searchString) => {
 };
 
 // Get data by url
-export async function getData(url) {
+export const getData = async (url) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -22,10 +22,10 @@ export async function getData(url) {
   } catch (error) {
     console.log(`Error: ${error}`);
   }
-}
+};
 
 // Trending data
-export async function getTrendingData() {
+export const getTrendingData = async () => {
   const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY2}&limit=20`;
 
   try {
@@ -40,10 +40,10 @@ export async function getTrendingData() {
     console.error(`Error fetching data: ${error}`);
     throw error;
   }
-}
+};
 
 // Details data
-export async function getDetailsData(id) {
+export const getDetailsData = async (id) => {
   const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY2}`;
   try {
     const data = await getData(url);
@@ -59,4 +59,4 @@ export async function getDetailsData(id) {
     console.error(`Error fetching data: ${error}`);
     throw error;
   }
-}
+};
