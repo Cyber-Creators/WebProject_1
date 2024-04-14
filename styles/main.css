@@ -139,9 +139,9 @@ span.favorite:hover {
 
   font-size: 18px;
   border: none;
-  border-radius: 5px;
-  color: aquamarine;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.617);
+  border-radius: 35px;
+  color: rgb(95, 191, 255);
+  box-shadow: 2px 2px 8px rgb(131, 7, 248);
 }
 .divDetails img {
   float: left;
@@ -152,17 +152,25 @@ span.favorite:hover {
 
 .divDetails h3 {
   text-align: center;
+  color: rgb(26, 156, 243);
+  text-shadow: 3px 3px 2px black;
 }
 
 #name {
   font-weight: bold;
-  color: rgb(64, 113, 140);
+  color: rgb(190, 19, 237);
+  font-size: 22px;
+}
+
+#rating {
+  font-weight: bold;
+  color: rgb(190, 19, 237);
   font-size: 22px;
 }
 
 .divDetails a {
   text-decoration: none;
-  color: aquamarine;
+  color: rgb(95, 191, 255);
   cursor: pointer;
 }
 
@@ -197,7 +205,7 @@ span.favorite:hover {
   box-shadow: 2px 2px 15px #8707ff inset;
 }
 
-/* button style from  `uiverse`*/
+/* button style*/
 .btn {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
   --border-width: 0.125em;
