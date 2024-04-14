@@ -23,12 +23,22 @@ div#app {
     "footer footer footer";
   min-height: 100vh;
 }
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  30% {
+    background-position: 100% 0;
+  }
+}
 
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/1_gtNsG-pHDrCIm20_ouAQNQ\ \(1\).gif");
-  background-repeat: repeat;
+  background: url("../images/giphy\ \(5\)\ \(2\).gif");
+  background-repeat: repeat-x;
+  animation: moveBackground 22s linear infinite;
+  border-bottom: 3px solid rgba(135, 7, 255, 0.117);
 }
 
 nav {
@@ -129,9 +139,9 @@ span.favorite:hover {
 
   font-size: 18px;
   border: none;
-  border-radius: 5px;
-  color: aquamarine;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.617);
+  border-radius: 35px;
+  color: rgb(95, 191, 255);
+  box-shadow: 2px 2px 8px rgb(131, 7, 248);
 }
 .divDetails img {
   float: left;
@@ -142,17 +152,25 @@ span.favorite:hover {
 
 .divDetails h3 {
   text-align: center;
+  color: rgb(26, 156, 243);
+  text-shadow: 3px 3px 2px black;
 }
 
 #name {
   font-weight: bold;
-  color: rgb(64, 113, 140);
+  color: rgb(190, 19, 237);
+  font-size: 22px;
+}
+
+#rating {
+  font-weight: bold;
+  color: rgb(190, 19, 237);
   font-size: 22px;
 }
 
 .divDetails a {
   text-decoration: none;
-  color: aquamarine;
+  color: rgb(95, 191, 255);
   cursor: pointer;
 }
 
@@ -166,8 +184,12 @@ span.favorite:hover {
   font-size: 80px;
 }
 
+/* search form */
+#searchForm {
+  display: flex;
+  width: 60%;
+}
 /* search input */
-
 #search {
   color: #8707ff;
   border: 2px solid #8707ff;
@@ -183,7 +205,7 @@ span.favorite:hover {
   box-shadow: 2px 2px 15px #8707ff inset;
 }
 
-/* button style from  `uiverse`*/
+/* button style*/
 .btn {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
   --border-width: 0.125em;
@@ -290,4 +312,86 @@ span.favorite:hover {
 
 #favorites {
   padding-right: 50px;
+}
+
+/* Search container */
+
+#allGifsContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 30px;
+  justify-content: center;
+}
+
+#gifContainer img {
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+  border-radius: 11px;
+}
+
+/* upload form */
+
+#myUploadForm {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 150px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 25px;
+  background-color: #13121269;
+  border-radius: 15px;
+  box-shadow: 3px -3px 3px rgba(0, 0, 0, 0.551);
+}
+
+#myUploadForm label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  color: rgb(107, 42, 183);
+}
+
+#file {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: rgb(107, 42, 183);
+  border-radius: 5px;
+  width: 30%;
+  cursor: pointer;
+}
+
+#myUploadForm button {
+  width: 150px;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  background: rgb(255, 255, 255);
+  color: blueviolet;
+  border-radius: 0.5rem;
+  border-bottom: 2px solid blueviolet;
+  border-right: 2px solid blueviolet;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  transition-duration: 1s;
+  transition-property: border-top, border-left, border-bottom, border-right,
+    box-shadow;
+}
+
+#myUploadForm button:hover {
+  border-top: 2px solid blueviolet;
+  border-left: 2px solid blueviolet;
+  border-bottom: 2px solid rgb(238, 103, 238);
+  border-right: 2px solid rgb(238, 103, 238);
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px;
+}
+
+/* footer */
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #ccc;
+  bottom: 0;
+  border-top: 1px solid #cccccc5b;
 }

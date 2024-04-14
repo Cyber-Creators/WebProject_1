@@ -4,8 +4,8 @@ import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { qs, q } from "./events/helpers.js";
 
-if (!localStorage.getItem('uploadedGifs')) {
-  localStorage.setItem('uploadedGifs', JSON.stringify([]));
+if (!localStorage.getItem("uploadedGifs")) {
+  localStorage.setItem("uploadedGifs", JSON.stringify([]));
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -18,14 +18,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("click", async (event) => {
     /* renderDetails */
     const detailsDiv = q(".divDetails");
-    if (event.target.classList.contains("giphyImg")) {
-      await renderDetails(event.target.id, detailsDiv);
-      detailsDiv.style.display = "block";
-    } else if (
-      event.target.id === "container" ||
-      event.target.classList.contains("trending")
-    ) {
-      detailsDiv.style.display = "none";
+    if (detailsDiv) {
+      if (event.target.classList.contains("giphyImg")) {
+        await renderDetails(event.target.id, detailsDiv);
+        detailsDiv.style.display = "block";
+      } else if (!event.target.classList.contains("giphyImg")) {
+        detailsDiv.style.display = "none";
+      }
     }
 
     /* Search */
@@ -43,20 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (event.target.id === "uploadedGifs") {
-
-      getGifsById();
-
-      
-
     }
-
-
   });
 
   document.addEventListener("submit", async (event) => {
     if (event.target.id === "myUploadForm") {
-      
-      event.preventDefault(); 
+      event.preventDefault();
       const fileInput = document.querySelector("input#file");
       const formdata = new FormData();
       formdata.append("file", fileInput.files[0]);
@@ -74,11 +65,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const id = jsonData.data.id;
 
-      const uploadedGifs = JSON.parse(localStorage.getItem('uploadedGifs')); // Converts the value to array (as it's string by default)
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); // Converts the value to array (as it's string by default)
 
       uploadedGifs.push(id); // Adds the ID of the uploaded gif image to the array
 
-      localStorage.setItem('uploadedGifs', JSON.stringify(uploadedGifs)); // Updates the localStorage with the stringified array
+      localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs)); // Updates the localStorage with the stringified array
     }
   });
 });

@@ -1,29 +1,41 @@
-import { API_KEY, API_KEY2 } from "../common/constants.js";
-import { getData } from "../requests/request-service.js";
-const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY2}&limit=20`;
+import { getTrendingData } from "../requests/request-service.js";
 
+/**
+ * Renders the trending GIFs.
+ * @property {Object} data - The data from the API.
+ * @property {string} url - The URL of the GIF.
+ * @property {string} id - The ID of the GIF.
+ */
 export async function renderHome() {
   try {
-    const data = await getData(url);
-    const div = document.createElement("div");
-    div.classList = "trendingContainer";
-    for (let el of data.data) {
-      const gifImg = document.createElement("img");
-      gifImg.src = el.images.fixed_height.url;
-      gifImg.id = el.id;
-      gifImg.className = "giphyImg";
-      div.appendChild(gifImg);
+    const data = await getTrendingData();
+    let html = `<div class="trendingContainer">`;
+    for (let el of data) {
+      html += `
+        <img src="${el.url}" id="${el.id}" class="giphyImg">
+      `;
     }
-    return div;
+    html += `</div>`;
+    const div = document.createElement("div");
+    div.innerHTML = html.trim();
+    return div.firstChild;
   } catch (error) {
     console.log(`Error rendering home: ${error}`);
     return "<h1>Error rendering home page</h1>";
   }
 }
 
+/**
+ * Creates and returns a div element containing the trending title.
+ * @returns {HTMLElement} A div element containing the trending title.
+ */
 export function trendingTitle() {
-  const trendingTitle = document.createElement("h3");
-  trendingTitle.innerHTML = `<i class="fa-solid fa-arrow-trend-up fa-xl"></i>Trending`;
-  trendingTitle.className = "trending";
-  return trendingTitle;
+  const html = `
+    <h3 class="trending">
+      <i class="fa-solid fa-arrow-trend-up fa-xl"></i>Trending
+    </h3>
+  `;
+  const div = document.createElement("div");
+  div.innerHTML = html.trim();
+  return div.firstChild;
 }
