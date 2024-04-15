@@ -1,8 +1,13 @@
-import { getGifsById, searchByString } from "./requests/request-service.js";
+import {
+  getGifsById,
+  searchByString,
+  getFavoriteGifsById,
+} from "./requests/request-service.js";
 import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { qs, q } from "./events/helpers.js";
+import { toggleFavoriteStatus } from "./events/favorites-events.js";
 
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
@@ -43,16 +48,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
-      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs")); 
+      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
 
       console.log(uploadedGifs);
-      
-      document.querySelector("div#container").innerHTML = 
-          (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
+
+      document.querySelector("div#container").innerHTML =
+        uploadedGifs.length !== 0
+          ? await getGifsById(uploadedGifs.join(","))
+          : "No Gif images uploaded.";
     }
 
     if (event.target.id === "deleteUploadedGif") {
-
       const idToRemove = event.target.parentNode.querySelector("img").id;
 
       console.log(idToRemove);
@@ -60,7 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
 
       console.log(uploadedGifs);
-
 
       const index = uploadedGifs.indexOf(idToRemove);
 
@@ -70,10 +75,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
 
-      document.querySelector("div#container").innerHTML = 
-          (uploadedGifs.length !== 0) ? await getGifsById(uploadedGifs.join(',')) : "No Gif images uploaded.";
+      document.querySelector("div#container").innerHTML =
+        uploadedGifs.length !== 0
+          ? await getGifsById(uploadedGifs.join(","))
+          : "No Gif images uploaded.";
+    }
+    /* favorites */
+    if (event.target.classList.contains("favorite")) {
+      const movieId = event.target.dataset.movieId;
+      console.log(event.target.dataset.movieId);
+      toggleFavoriteStatus(movieId);
     }
 
+    if (event.target.id === "favorites") {
+      event.preventDefault();
+      const favorites = JSON.parse(localStorage.getItem("favorites"));
+      console.log(favorites);
+      document.querySelector("div#container").innerHTML =
+        favorites.length !== 0
+          ? await getFavoriteGifsById(favorites.join(","))
+          : "No Gif images uploaded.";
+    }
   });
 
   document.addEventListener("submit", async (event) => {
