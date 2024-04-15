@@ -1,5 +1,5 @@
 export const renderFavoriteGifs = (jsonData) =>
-  `<div id="history">
+  `<div id="favoritesContainer">
     ${jsonData.data
       .map((item) => {
         return `<div id="gifContainer">
