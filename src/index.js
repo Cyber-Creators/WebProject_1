@@ -92,14 +92,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       const favorites = JSON.parse(localStorage.getItem("favorites"));
       if (favorites.length === 0) {
         document.querySelector("div#container").innerHTML = `
-            No favorite Gif images added yet.<br><br><br>
-            ${await getRandomGif()}
+        <div id="emptyFavorites">
+          <div id="e">
+           <p id="emptyTitle"> No favorite Gif images added yet.</p><br>
+           ${await getRandomGif()}
+            </div>
+            </div>
         `;
       } else {
-        document.querySelector("div#container").innerHTML = await getFavoriteGifsById(favorites.join(","));
+        document.querySelector("div#container").innerHTML =
+          await getFavoriteGifsById(favorites.join(","));
       }
     }
-
   });
 
   /* Upload form submission */
