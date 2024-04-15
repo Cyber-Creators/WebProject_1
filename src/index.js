@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const favorites = JSON.parse(localStorage.getItem("favorites"));
       if (favorites.length === 0) {
         document.querySelector("div#container").innerHTML = `
-            No Gif images found under this section.<br><br><br>
+            No favorite Gif images added yet.<br><br><br>
             ${await getRandomGif()}
         `;
       } else {
