@@ -1,18 +1,18 @@
-import { EMPTY_HEART, FULL_HEART } from '../common/constants.js';
-import { addFavorite, getFavorites, removeFavorite } from '../data/favorites.js';
-import { q } from './helpers.js';
+import { EMPTY_HEART, FULL_HEART } from "../common/constants.js";
+import { addFavorite, getFavorites, removeFavorite } from "./favorites.js";
+import { q } from "./helpers.js";
 
 export const toggleFavoriteStatus = (movieId) => {
   const favorites = getFavorites();
   const heartSpan = q(`span[data-movie-id="${movieId}"]`);
-  
+
   if (favorites.includes(movieId)) {
     removeFavorite(movieId);
-    heartSpan.classList.remove('active')
+    heartSpan.classList.remove("active");
     heartSpan.innerHTML = EMPTY_HEART;
   } else {
     addFavorite(movieId);
-    heartSpan.classList.add('active');
+    heartSpan.classList.add("active");
     heartSpan.innerHTML = FULL_HEART;
   }
 };
