@@ -3,7 +3,16 @@ export const generateUploadForm = async () => {
                 <form id="myUploadForm">
                 <label for="arquivo">Choose a file:</label>
                     <input type="file" id="file" name="file">
-                    <button type="submit">Upload</button>
+                    <button class="btn2" type="submit">
+                    <strong>SEND</strong>
+                        <div id="container-stars">
+                            <div id="stars"></div>
+                                </div>
+                                    <div id="glow">
+                                    <div class="circle"></div>
+                                        <div class="circle"></div>
+                                    </div>
+                    </button>
                 </form>
             </div>`;
 };
