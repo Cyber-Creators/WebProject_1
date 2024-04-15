@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // add global listener for "click" events -> filter clicks by element id
   document.addEventListener("click", async (event) => {
-    console.log(event.target.className);
     /* renderDetails */
     const detailsDiv = q(".divDetails");
     if (detailsDiv) {
