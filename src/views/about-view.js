@@ -24,11 +24,11 @@ export const aboutView = () => {
       "https://www.facebook.com/petko.zl/"
     )}
     ${card(
-      "../../images/Ipetko8 (1).JPG",
+      "../../images/AntonMiltenov.jpg",
       "Anton Miltenov",
-      "https://github.com/Petkov-Petko",
-      "https://www.instagram.com/petko_zlatilov/",
-      "https://www.facebook.com/petko.zl/"
+      "https://github.com/AntonMiltenov",
+      "https://www.instagram.com/anton.miltenov",
+      "https://www.facebook.com/anton.miltenov.524"
     )}
   </div>
 `;
