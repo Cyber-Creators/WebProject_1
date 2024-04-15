@@ -2,6 +2,7 @@ import { API_KEY } from "../common/constants.js";
 import { renderUploadedGifs } from "../views/history-view.js";
 import { searchToHtml } from "../views/search-view.js";
 import { renderFavoriteGifs } from "../views/favorites-view.js";
+import { renderRandomGif } from "../views/random-view.js";
 
 export const searchByString = async (searchString) => {
   try {
@@ -44,6 +45,16 @@ export const uploadGif = async (formdata) => {
     console.log(e.message);
   }
 }
+
+export const getRandomGif = async () => {
+  try {
+    const data = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`);
+    const jsonData = await data.json();
+    return renderRandomGif(jsonData);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
 /**
  * Fetches data from the specified URL.
