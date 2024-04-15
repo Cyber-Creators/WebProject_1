@@ -74,12 +74,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
       addToDOM(uploadedGifs);
     }
-    /* favorites */
+
+    /* Clicking on heart icons */
     if (event.target.classList.contains("favorite")) {
       const movieId = event.target.dataset.movieId;
       toggleFavoriteStatus(movieId);
     }
 
+    /* Favorites page */
     if (event.target.id === "favorites") {
       event.preventDefault();
       const favorites = JSON.parse(localStorage.getItem("favorites"));
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  /* Upload form submission */
   document.addEventListener("submit", async (event) => {
     if (event.target.id === "myUploadForm") {
       event.preventDefault();
