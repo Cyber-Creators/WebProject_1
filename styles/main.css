@@ -421,3 +421,83 @@ footer {
   gap: 30px;
   justify-content: center;
 }
+
+/* About */
+/* glowing hover card made by: csozi | Website: english.csozi.hu*/
+
+#aboutContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.card {
+  width: 300px;
+  height: 360px;
+  border-radius: 2em;
+  padding: 30px;
+  background-color: rgba(60, 41, 52, 0.42);
+  box-shadow: 5px 5px 30px rgb(4, 4, 4), -5px -5px 30px rgb(57, 57, 57);
+}
+
+.profileimage {
+  background-color: transparent;
+  border: none;
+  width: 150px;
+  height: 170px;
+}
+
+.profileimage img {
+  border-radius: 90px;
+  height: 170px;
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pfp {
+  border-radius: 35em;
+  fill: white;
+}
+
+.Name {
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 15px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.socialbar {
+  background-color: #191919;
+  border-radius: 3em;
+  width: 90%;
+  padding: 14px;
+  margin-top: 35px;
+  color: white;
+  box-shadow: 3px 3px 15px rgb(0, 0, 0), -3px -3px 15px rgb(58, 58, 58);
+}
+
+.card a {
+  transition: 0.4s;
+  color: white;
+}
+
+#github:hover {
+  color: #c9510c;
+}
+
+#instagram:hover {
+  color: #d62976;
+}
+
+#facebook:hover {
+  color: #3b5998;
+}
+
+#twitter:hover {
+  color: #00acee;
+}
