@@ -21,13 +21,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // add global listener for "click" events -> filter clicks by element id
   document.addEventListener("click", async (event) => {
+    console.log(event.target.className);
     /* renderDetails */
     const detailsDiv = q(".divDetails");
     if (detailsDiv) {
       if (event.target.classList.contains("giphyImg")) {
         await renderDetails(event.target.id, detailsDiv);
         detailsDiv.style.display = "block";
-      } else if (!event.target.classList.contains("giphyImg")) {
+      } else if (
+        event.target.className !== "giphyImg" &&
+        event.target.className !== "divDetails" &&
+        event.target.className !== "favorite" &&
+        event.target.className !== "favorite active"
+      ) {
         detailsDiv.style.display = "none";
       }
     }
@@ -83,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     /* favorites */
     if (event.target.classList.contains("favorite")) {
       const movieId = event.target.dataset.movieId;
-      console.log(event.target.dataset.movieId);
       toggleFavoriteStatus(movieId);
     }
 
