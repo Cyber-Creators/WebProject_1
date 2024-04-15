@@ -2,6 +2,7 @@ import {
   getGifsById,
   searchByString,
   getFavoriteGifsById,
+  uploadGif,
 } from "./requests/request-service.js";
 import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
@@ -95,23 +96,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("submit", async (event) => {
     if (event.target.id === "myUploadForm") {
       event.preventDefault();
-      const fileInput = document.querySelector("input#file");
       const formdata = new FormData();
-      formdata.append("file", fileInput.files[0]);
-
-      const data = await fetch(
-        `https://upload.giphy.com/v1/gifs?api_key=KtzPyAoJb9AgzuM037P7pcTReo7AnuBZ`,
-        {
-          method: "POST",
-          body: formdata,
-        }
-      );
-
-      const jsonData = await data.json();
-      const id = jsonData.data.id;
-      const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
-      uploadedGifs.push(id);
-      localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
+      formdata.append("file", document.querySelector("input#file").files[0]);
+      uploadGif(formdata);
     }
   });
 });

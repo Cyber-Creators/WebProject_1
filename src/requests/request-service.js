@@ -27,6 +27,24 @@ export const getGifsById = async (ids) => {
   }
 };
 
+export const uploadGif = async (formdata) => {
+  try {
+    const data = await fetch(
+      `https://upload.giphy.com/v1/gifs?api_key=${API_KEY}`,
+      {
+        method: "POST",
+        body: formdata,
+      }
+    );
+    const jsonData = await data.json();
+    const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
+    uploadedGifs.push(jsonData.data.id);
+    localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 /**
  * Fetches data from the specified URL.
  * @param {string} url - The URL to fetch data from.
