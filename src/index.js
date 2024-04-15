@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector("div#container").innerHTML =
         favorites.length !== 0
           ? await getFavoriteGifsById(favorites.join(","))
-          : "No Gif images uploaded.";
+          : "No Gif images found in this section.";
     }
   });
 
