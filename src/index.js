@@ -14,6 +14,13 @@ if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
 }
 
+const addToDOM = async (uploadedGifs) => {
+  document.querySelector("div#container").innerHTML =
+        uploadedGifs.length !== 0
+          ? await getGifsById(uploadedGifs.join(","))
+          : "No Gif images uploaded.";
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
   const container = q("#container");
   container.appendChild(trendingTitle());
@@ -56,25 +63,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     /* History section (see uploaded gifs) */
     if (event.target.id === "uploadedGifs") {
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
-      document.querySelector("div#container").innerHTML =
-        uploadedGifs.length !== 0
-          ? await getGifsById(uploadedGifs.join(","))
-          : "No Gif images uploaded.";
+      addToDOM(uploadedGifs);
     }
 
+    /* Delete Gif button */
     if (event.target.id === "deleteUploadedGif") {
       const idToRemove = event.target.parentNode.querySelector("img").id;
       const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
-
-      const index = uploadedGifs.indexOf(idToRemove);
-      uploadedGifs.splice(index, 1);
-
+      uploadedGifs.splice(uploadedGifs.indexOf(idToRemove), 1);
       localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
-
-      document.querySelector("div#container").innerHTML =
-        uploadedGifs.length !== 0
-          ? await getGifsById(uploadedGifs.join(","))
-          : "No Gif images uploaded.";
+      addToDOM(uploadedGifs);
     }
     /* favorites */
     if (event.target.classList.contains("favorite")) {
