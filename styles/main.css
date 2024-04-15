@@ -524,7 +524,7 @@ footer {
 }
 
 #deleteUploadedGif::after,
-button::before {
+#deleteUploadedGif::before {
   content: "";
   width: 0%;
   height: 2px;
@@ -534,6 +534,6 @@ button::before {
 }
 
 #deleteUploadedGif:hover::after,
-button:hover::before {
+#deleteUploadedGif:hover::before {
   width: 100%;
 }
