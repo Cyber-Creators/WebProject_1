@@ -395,3 +395,11 @@ footer {
   bottom: 0;
   border-top: 1px solid #cccccc5b;
 }
+
+/* favorites container */
+#favoritesContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 30px;
+  justify-content: center;
+}
