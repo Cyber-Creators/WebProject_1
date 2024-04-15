@@ -218,17 +218,16 @@ span.favorite:hover {
   box-shadow: 2px 2px 15px #8707ff inset;
 }
 
-#emptyFavorites {
+#e {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-weight: bold;
-  text-align: center;
+  font-size: 33px;
+  color: #8a8686a2;
+  text-shadow: 3px 3px 3px black;
 }
 
-#emptyFavorites p {
-  font-size: 33px;
-  color: rgb(138, 125, 125);
-  text-shadow: 3px 3px 2px black;
-  margin-bottom: 0px;
-}
 /* button style*/
 .btn {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
