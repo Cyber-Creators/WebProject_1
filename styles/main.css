@@ -1,5 +1,3 @@
-/* Template styling */
-
 html,
 body {
   margin: 0;
@@ -104,10 +102,6 @@ a.active {
   font-weight: bold;
 }
 
-/* End template styling */
-
-/* Add your styles below */
-
 /* Trending page (home page) */
 .trendingContainer img {
   width: 300px;
@@ -115,7 +109,9 @@ a.active {
   cursor: pointer;
   border-radius: 11px;
 }
-.trendingContainer {
+.trendingContainer,
+#favoritesContainer,
+#history {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
@@ -222,6 +218,17 @@ span.favorite:hover {
   box-shadow: 2px 2px 15px #8707ff inset;
 }
 
+#emptyFavorites {
+  font-weight: bold;
+  text-align: center;
+}
+
+#emptyFavorites p {
+  font-size: 33px;
+  color: rgb(138, 125, 125);
+  text-shadow: 3px 3px 2px black;
+  margin-bottom: 0px;
+}
 /* button style*/
 .btn {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
@@ -414,15 +421,15 @@ footer {
 }
 
 /* favorites container */
-#favoritesContainer {
+#favoritesContainer,
+#history {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 /* About */
-/* glowing hover card made by: csozi | Website: english.csozi.hu*/
 
 #aboutContainer {
   display: flex;
@@ -499,4 +506,35 @@ footer {
 
 #twitter:hover {
   color: #00acee;
+}
+
+/* history */
+
+#deleteUploadedGif {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+#deleteUploadedGif::before {
+  margin-left: auto;
+}
+
+#deleteUploadedGif::after,
+button::before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+
+#deleteUploadedGif:hover::after,
+button:hover::before {
+  width: 100%;
 }
