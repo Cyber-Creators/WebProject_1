@@ -1,3 +1,10 @@
+/**
+ * Generates a string of HTML that represents a container with favorite GIFs.
+ * Each GIF is represented by an image element with the source set to the GIF's URL.
+ *
+ * @param {Object} jsonData - The JSON data from the Giphy API.
+ * @returns {string} A string of HTML that represents the favorite GIFs.
+ */
 export const renderFavoriteGifs = (jsonData) =>
   `<div id="favoritesContainer">
     ${jsonData.data
