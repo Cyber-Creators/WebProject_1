@@ -3,6 +3,7 @@ import {
   searchByString,
   getFavoriteGifsById,
   uploadGif,
+  getRandomGif,
 } from "./requests/request-service.js";
 import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
@@ -85,12 +86,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.target.id === "favorites") {
       event.preventDefault();
       const favorites = JSON.parse(localStorage.getItem("favorites"));
-      console.log(favorites);
-      document.querySelector("div#container").innerHTML =
-        favorites.length !== 0
-          ? await getFavoriteGifsById(favorites.join(","))
-          : "No Gif images found in this section.";
+      if (favorites.length === 0) {
+        document.querySelector("div#container").innerHTML = `
+            No Gif images found under this section.<br><br><br>
+            ${await getRandomGif()}
+        `;
+      } else {
+        document.querySelector("div#container").innerHTML = await getFavoriteGifsById(favorites.join(","));
+      }
     }
+
   });
 
   /* Upload form submission */
