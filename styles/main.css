@@ -104,14 +104,6 @@ a.active {
   font-weight: bold;
 }
 
-span.favorite.active {
-  color: rgb(255, 0, 149);
-}
-
-span.favorite:hover {
-  color: rgb(187, 135, 255);
-}
-
 /* End template styling */
 
 /* Add your styles below */
@@ -196,10 +188,17 @@ span.favorite:hover {
 .favorite {
   color: rgb(189, 108, 171);
   cursor: pointer;
-  position: relative;
-  left: 130px;
-  bottom: 70px;
-  font-size: 80px;
+  position: fixed;
+  font-size: 90px;
+  top: 2em;
+  right: 0.7em;
+}
+span.favorite.active {
+  color: rgb(255, 0, 149);
+}
+
+span.favorite:hover {
+  color: rgba(255, 0, 149, 0.472);
 }
 
 /* search form */
