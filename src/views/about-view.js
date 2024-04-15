@@ -1,5 +1,11 @@
 import { card } from "../events/cards.js";
 
+/**
+ * Generates a string of HTML that represents the about view.
+ * The about view contains three cards, each with a different image and name,
+ * GitHub, Instagram, and Facebook links
+ * @returns {string} A string of HTML that represents the about view.
+ */
 export const aboutView = () => {
   return `
   <div id="aboutContainer">
