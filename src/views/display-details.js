@@ -1,5 +1,6 @@
 import { getDetailsData } from "../requests/request-service.js";
 import { EMPTY_HEART } from "../common/constants.js";
+import { renderFavoriteStatus } from "../events/favorites-events.js";
 
 /**
  * Creates and returns a div element for displaying details.
@@ -28,8 +29,10 @@ export async function renderDetails(id, div) {
       <hr id="hr" />
       <p>Username: <span id="name">${data.username}</span></p>
       <p>rating: <span id="rating"> ${data.rating}</span></p>
-      <a href=${data.embed_url} target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: rgb(95, 191, 255);"></i>  Giffy</a><br />
-      <span class="favorite" >${EMPTY_HEART}</span>
+      <a href=${
+        data.embed_url
+      } target="_blank"><i class="fa-solid fa-up-right-from-square fa-lg" style="color: rgb(95, 191, 255);"></i>  Giffy</a><br />
+      ${renderFavoriteStatus(id)}
     `;
   } catch (error) {
     console.log(`Error rendering details: ${error}`);
