@@ -186,7 +186,7 @@ a.active {
   cursor: pointer;
   position: fixed;
   font-size: 90px;
-  top: 2em;
+  top: 1.7em;
   right: 0.7em;
 }
 span.favorite.active {
