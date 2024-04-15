@@ -77,13 +77,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     /* favorites */
     if (event.target.classList.contains("favorite")) {
-      const id = event.target.dataset.id;
-      toggleFavoriteStatus(id);
+      const movieId = event.target.dataset.movieId;
+      toggleFavoriteStatus(movieId);
     }
 
     if (event.target.id === "favorites") {
       event.preventDefault();
       const favorites = JSON.parse(localStorage.getItem("favorites"));
+      console.log(favorites);
       document.querySelector("div#container").innerHTML =
         favorites.length !== 0
           ? await getFavoriteGifsById(favorites.join(","))
