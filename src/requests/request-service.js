@@ -1,6 +1,7 @@
-import { API_KEY, API_KEY2 } from "../common/constants.js";
+import { API_KEY } from "../common/constants.js";
 import { renderUploadedGifs } from "../views/history-view.js";
 import { searchToHtml } from "../views/search-view.js";
+import { renderFavoriteGifs } from "../views/favorites-view.js";
 
 export const searchByString = async (searchString) => {
   try {
@@ -16,7 +17,9 @@ export const searchByString = async (searchString) => {
 
 export const getGifsById = async (ids) => {
   try {
-    const data = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`);
+    const data = await fetch(
+      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`
+    );
     const jsonData = await data.json();
     return renderUploadedGifs(jsonData);
   } catch (e) {
@@ -45,7 +48,7 @@ export const getData = async (url) => {
  * @throws {Error} If there is an error fetching the data.
  */
 export const getTrendingData = async () => {
-  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY2}&limit=20`;
+  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
 
   try {
     const response = await fetch(url);
@@ -68,7 +71,7 @@ export const getTrendingData = async () => {
  * @throws {Error} - If there is an error fetching the data.
  */
 export const getDetailsData = async (id) => {
-  const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY2}`;
+  const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY}`;
   try {
     const data = await getData(url);
     const processedData = {
@@ -82,5 +85,17 @@ export const getDetailsData = async (id) => {
   } catch (error) {
     console.error(`Error fetching data: ${error}`);
     throw error;
+  }
+};
+
+export const getFavoriteGifsById = async (ids) => {
+  try {
+    const data = await fetch(
+      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`
+    );
+    const jsonData = await data.json();
+    return renderFavoriteGifs(jsonData);
+  } catch (e) {
+    console.log(e.message);
   }
 };
