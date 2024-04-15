@@ -9,6 +9,7 @@ import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { qs, q } from "./events/helpers.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
+import { aboutView } from "./views/about-view.js";
 
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
@@ -16,9 +17,9 @@ if (!localStorage.getItem("uploadedGifs")) {
 
 const addToDOM = async (uploadedGifs) => {
   document.querySelector("div#container").innerHTML =
-        uploadedGifs.length !== 0
-          ? await getGifsById(uploadedGifs.join(","))
-          : "No Gif images uploaded.";
+    uploadedGifs.length !== 0
+      ? await getGifsById(uploadedGifs.join(","))
+      : "No Gif images uploaded.";
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -45,7 +46,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         detailsDiv.style.display = "none";
       }
     }
-
+    /* About */
+    if (event.target.id === "about") {
+      event.preventDefault();
+      document.querySelector("div#container").innerHTML = aboutView();
+    }
     /* Search */
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
