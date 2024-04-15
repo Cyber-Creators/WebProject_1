@@ -1,34 +1,41 @@
 import { getTrendingData } from "../requests/request-service.js";
 
-/**
- * Renders the trending GIFs.
- * @property {Object} data - The data from the API.
- * @property {string} url - The URL of the GIF.
- * @property {string} id - The ID of the GIF.
- */
 export async function renderHome() {
   try {
     const data = await getTrendingData();
-    let html = `<div class="trendingContainer">`;
+    const container = document.createElement("div");
+    container.classList.add("trendingContainer");
+    
     for (let el of data) {
-      html += `
-        <img src="${el.url}" id="${el.id}" class="giphyImg">
-      `;
+      const img = document.createElement("img");
+      img.src = el.url;
+      img.id = el.id;
+      img.classList.add("giphyImg");
+      container.appendChild(img);
     }
-    html += `</div>`;
-    const div = document.createElement("div");
-    div.innerHTML = html.trim();
-    return div.firstChild;
+
+    const triggerElement = document.createElement("div");
+    triggerElement.id = "load-more-trigger";
+    container.appendChild(triggerElement);
+
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadMoreTrendingGIFs(container);
+          }
+        });
+      },
+      { threshold: 1 }
+    );
+    observer.observe(triggerElement);
+    return container;
   } catch (error) {
     console.log(`Error rendering home: ${error}`);
     return "<h1>Error rendering home page</h1>";
   }
 }
 
-/**
- * Creates and returns a div element containing the trending title.
- * @returns {HTMLElement} A div element containing the trending title.
- */
 export function trendingTitle() {
   const html = `
     <h3 class="trending">
@@ -38,4 +45,21 @@ export function trendingTitle() {
   const div = document.createElement("div");
   div.innerHTML = html.trim();
   return div.firstChild;
+}
+
+async function loadMoreTrendingGIFs(container) {
+  try {
+    const currentCount = container.querySelectorAll('.giphyImg').length;
+    const newData = await getTrendingData(currentCount);
+
+    for (let el of newData) {
+      const img = document.createElement("img");
+      img.src = el.url;
+      img.id = el.id;
+      img.classList.add("giphyImg");
+      container.appendChild(img);
+    }
+  } catch (error) {
+    console.error("Error loading more trending GIFs:", error);
+  }
 }

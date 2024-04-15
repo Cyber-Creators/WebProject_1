@@ -11,6 +11,8 @@ import { renderDetails, Details } from "./views/display-details.js";
 import { q } from "./events/helpers.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { aboutView } from "./views/about-view.js";
+import "./views/infinite-scroll.js";
+
 
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));

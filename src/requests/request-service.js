@@ -75,11 +75,13 @@ export const getData = async (url) => {
 
 /**
  * Fetches trending GIF data from the Giphy API.
+ * @param {number} offset - The offset for fetching the data.
+ * @param {number} limit - The number of GIFs to fetch.
  * @returns {Promise<Array<Object>>} An array of processed GIF data objects.
  * @throws {Error} If there is an error fetching the data.
  */
-export const getTrendingData = async () => {
-  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
+export const getTrendingData = async (offset = 0, limit = 20) => {
+  const url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&offset=${offset}&limit=${limit}`;
 
   try {
     const response = await fetch(url);
@@ -94,6 +96,7 @@ export const getTrendingData = async () => {
     throw error;
   }
 };
+
 
 /**
  * Retrieves details data for a given ID from the Giphy API.
