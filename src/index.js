@@ -8,7 +8,7 @@ import {
 import { generateUploadForm } from "./views/upload-view.js";
 import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
-import { qs, q } from "./events/helpers.js";
+import { q } from "./events/helpers.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 
 if (!localStorage.getItem("uploadedGifs")) {
