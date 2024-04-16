@@ -20,6 +20,7 @@ export const generateUploadForm = async () => {
 
 export const displayConfirmation = async (arg) => {
     if (arg === "success") {
+        
         document.querySelector("div#container").innerHTML = 
         `<div id="complete">
             <h3>Upload completed!</h3>
