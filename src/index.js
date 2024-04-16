@@ -13,16 +13,15 @@ import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { aboutView } from "./views/about-view.js";
 import "./views/infinite-scroll.js";
 
-
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
 }
 
 const addToDOM = async (uploadedGifs) => {
   document.querySelector("div#container").innerHTML =
-        uploadedGifs.length !== 0
-          ? await getGifsById(uploadedGifs.join(","))
-          : "No Gif images uploaded.";
+    uploadedGifs.length !== 0
+      ? await getGifsById(uploadedGifs.join(","))
+      : "No Gif images uploaded.";
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -48,7 +47,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         detailsDiv.style.display = "none";
       }
     }
-
+    if (event.target.id === "about") {
+      event.preventDefault();
+      document.querySelector("div#container").innerHTML = aboutView();
+    }
     /* Search */
     if (event.target.id === "searchBtn") {
       const searchString = document.querySelector("input#search").value;
@@ -105,9 +107,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (event.target.id === "confirm") {
       document.querySelector("div#spinner").classList.add("hidden");
-      document.querySelector("div#container").innerHTML = await generateUploadForm();
+      document.querySelector("div#container").innerHTML =
+        await generateUploadForm();
     }
-
   });
 
   /* Upload form submission */
@@ -122,13 +124,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   /* Listen for ENTER presses on search input field */
-  document.querySelector("input#search").addEventListener("keypress", async (event) => {
-    if (event.key === "Enter") {
-      const searchString = document.querySelector("input#search").value;
-      document.querySelector("div#container").innerHTML = await searchByString(
-        searchString
-      );
-    }
-  });
-
+  document
+    .querySelector("input#search")
+    .addEventListener("keypress", async (event) => {
+      if (event.key === "Enter") {
+        const searchString = document.querySelector("input#search").value;
+        document.querySelector("div#container").innerHTML =
+          await searchByString(searchString);
+      }
+    });
 });
