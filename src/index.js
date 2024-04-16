@@ -12,6 +12,7 @@ import { q } from "./events/helpers.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
 import { aboutView } from "./views/about-view.js";
 import "./views/infinite-scroll.js";
+import { setActiveNav } from "./events/helpers.js";
 
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
@@ -25,6 +26,7 @@ const addToDOM = async (uploadedGifs) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+  setActiveNav("home");
   const container = q("#container");
   container.appendChild(trendingTitle());
   container.appendChild(await renderHome());
@@ -109,6 +111,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.querySelector("div#spinner").classList.add("hidden");
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
+    }
+
+    /* Nav events */
+    if (event.target.classList.contains("nav-link")) {
+      setActiveNav(event.target.getAttribute("data-page"));
     }
   });
 
