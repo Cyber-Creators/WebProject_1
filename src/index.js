@@ -10,6 +10,9 @@ import { renderHome, trendingTitle } from "./views/trending-view.js";
 import { renderDetails, Details } from "./views/display-details.js";
 import { q } from "./events/helpers.js";
 import { toggleFavoriteStatus } from "./events/favorites-events.js";
+import { aboutView } from "./views/about-view.js";
+import "./views/infinite-scroll.js";
+
 
 if (!localStorage.getItem("uploadedGifs")) {
   localStorage.setItem("uploadedGifs", JSON.stringify([]));
@@ -87,11 +90,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       const favorites = JSON.parse(localStorage.getItem("favorites"));
       if (favorites.length === 0) {
         document.querySelector("div#container").innerHTML = `
-            No favorite Gif images added yet.<br><br><br>
-            ${await getRandomGif()}
+        <div id="emptyFavorites">
+          <div id="e">
+           <p id="emptyTitle"> No favorite Gif images added yet.</p><br>
+           ${await getRandomGif()}
+            </div>
+            </div>
         `;
       } else {
-        document.querySelector("div#container").innerHTML = await getFavoriteGifsById(favorites.join(","));
+        document.querySelector("div#container").innerHTML =
+          await getFavoriteGifsById(favorites.join(","));
       }
     }
 

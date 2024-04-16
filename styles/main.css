@@ -1,5 +1,3 @@
-/* Template styling */
-
 html,
 body {
   margin: 0;
@@ -23,22 +21,13 @@ div#app {
     "footer footer footer";
   min-height: 100vh;
 }
-@keyframes moveBackground {
-  0% {
-    background-position: 0 0;
-  }
-  30% {
-    background-position: 100% 0;
-  }
-}
 
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/giphy\ \(5\)\ \(2\).gif");
-  background-repeat: repeat-x;
-  animation: moveBackground 22s linear infinite;
-  border-bottom: 3px solid rgba(135, 7, 255, 0.117);
+  background: url("../images/giphy\ \(5\)\ \(2\).gif") no-repeat;
+  background-size: 100% 100%;
+  border-bottom: 3px solid rgba(236, 233, 240, 0.135);
 }
 
 nav {
@@ -104,10 +93,6 @@ a.active {
   font-weight: bold;
 }
 
-/* End template styling */
-
-/* Add your styles below */
-
 /* Trending page (home page) */
 .trendingContainer img {
   width: 300px;
@@ -115,7 +100,9 @@ a.active {
   cursor: pointer;
   border-radius: 11px;
 }
-.trendingContainer {
+.trendingContainer,
+#favoritesContainer,
+#history {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
@@ -190,7 +177,7 @@ a.active {
   cursor: pointer;
   position: fixed;
   font-size: 90px;
-  top: 2em;
+  top: 1.7em;
   right: 0.7em;
 }
 span.favorite.active {
@@ -220,6 +207,16 @@ span.favorite:hover {
 
 #search:active {
   box-shadow: 2px 2px 15px #8707ff inset;
+}
+
+#e {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  font-size: 33px;
+  color: #8a8686a2;
+  text-shadow: 3px 3px 3px black;
 }
 
 /* button style*/
@@ -352,56 +349,210 @@ span.favorite:hover {
 #myUploadForm {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 150px;
+  width: 50%;
+  height: 190px;
   margin: 0 auto;
   padding: 20px;
   padding-top: 25px;
   background-color: #13121269;
   border-radius: 15px;
   box-shadow: 3px -3px 3px rgba(0, 0, 0, 0.551);
+  align-items: center;
 }
 
 #myUploadForm label {
+  padding-bottom: 7px;
   font-weight: bold;
   display: block;
   margin-bottom: 10px;
-  color: rgb(107, 42, 183);
+  color: rgb(117, 53, 108);
+  font-size: 27px;
 }
 
 #file {
-  padding: 10px;
+  padding: 16px;
   margin-bottom: 20px;
   border: none;
-  background-color: rgb(107, 42, 183);
-  border-radius: 5px;
+  background-color: rgb(102, 64, 97);
+  border-radius: 25px;
   width: 30%;
   cursor: pointer;
 }
 
-#myUploadForm button {
-  width: 150px;
-  padding: 1rem 2rem;
-  font-weight: 700;
-  background: rgb(255, 255, 255);
-  color: blueviolet;
-  border-radius: 0.5rem;
-  border-bottom: 2px solid blueviolet;
-  border-right: 2px solid blueviolet;
-  border-top: 2px solid white;
-  border-left: 2px solid white;
-  transition-duration: 1s;
-  transition-property: border-top, border-left, border-bottom, border-right,
-    box-shadow;
+.btn2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 13rem;
+  overflow: hidden;
+  height: 3rem;
+  background-size: 300% 300%;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+  transition: 0.5s;
+  animation: gradient_301 5s ease infinite;
+  border: double 4px transparent;
+  background-image: linear-gradient(#212121, #212121),
+    linear-gradient(
+      137.48deg,
+      #ffdb3b 10%,
+      #fe53bb 45%,
+      #8f51ea 67%,
+      #0044ff 87%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
-#myUploadForm button:hover {
-  border-top: 2px solid blueviolet;
-  border-left: 2px solid blueviolet;
-  border-bottom: 2px solid rgb(238, 103, 238);
-  border-right: 2px solid rgb(238, 103, 238);
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-    rgba(240, 46, 170, 0.2) 15px 15px;
+#container-stars {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+}
+
+strong {
+  z-index: 2;
+  font-family: "Avalors Personal Use";
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #ffffff;
+  text-shadow: 0 0 4px white;
+}
+
+#glow {
+  position: absolute;
+  display: flex;
+  width: 12rem;
+}
+
+.circle {
+  width: 100%;
+  height: 30px;
+  filter: blur(2rem);
+  animation: pulse_3011 4s infinite;
+  z-index: -1;
+}
+
+.circle:nth-of-type(1) {
+  background: rgba(254, 83, 186, 0.636);
+}
+
+.circle:nth-of-type(2) {
+  background: rgba(142, 81, 234, 0.704);
+}
+
+.btn2:hover #container-stars {
+  z-index: 1;
+  background-color: #212121;
+}
+
+.btn2:hover {
+  transform: scale(1.1);
+}
+
+.btn2:active {
+  border: double 4px #fe53bb;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.btn2:active .circle {
+  background: #fe53bb;
+}
+
+#stars {
+  position: relative;
+  background: transparent;
+  width: 200rem;
+  height: 200rem;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: -100rem;
+  width: 100%;
+  height: 100%;
+  animation: animStarRotate 90s linear infinite;
+}
+
+#stars::after {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+}
+
+#stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 170%;
+  height: 500%;
+  animation: animStar 60s linear infinite;
+}
+
+#stars::before {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-135rem);
+  }
+}
+
+@keyframes animStarRotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes gradient_301 {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse_3011 {
+  0% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
 }
 
 /* footer */
@@ -414,15 +565,15 @@ footer {
 }
 
 /* favorites container */
-#favoritesContainer {
+#favoritesContainer,
+#history {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 /* About */
-/* glowing hover card made by: csozi | Website: english.csozi.hu*/
 
 #aboutContainer {
   display: flex;
@@ -501,27 +652,33 @@ footer {
   color: #00acee;
 }
 
-.spinner {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  width: 125px;
-  height: 125px;
-  background-color: white;
-  background-image: url("./running-man.gif");
-  background-size: 100% 100%;
-  border: 14px solid rgba(9, 245, 135, 0.1);
-  border-left-color: red;
-  border-radius: 50%;
-  animation-name: spin;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  
-  transform: translate(-50%, -50%);
+/* history */
+
+#deleteUploadedGif {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#deleteUploadedGif::before {
+  margin-left: auto;
+}
+
+#deleteUploadedGif::after,
+#deleteUploadedGif::before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+
+#deleteUploadedGif:hover::after,
+#deleteUploadedGif:hover::before {
+  width: 100%;
 }
