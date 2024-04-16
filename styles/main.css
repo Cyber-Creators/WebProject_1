@@ -500,3 +500,28 @@ footer {
 #twitter:hover {
   color: #00acee;
 }
+
+.spinner {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 125px;
+  height: 125px;
+  background-color: white;
+  background-image: url("./running-man.gif");
+  background-size: 100% 100%;
+  border: 14px solid rgba(9, 245, 135, 0.1);
+  border-left-color: red;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
