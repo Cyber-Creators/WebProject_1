@@ -5,6 +5,11 @@ import { renderFavoriteGifs } from "../views/favorites-view.js";
 import { renderRandomGif } from "../views/random-view.js";
 import { displayConfirmation } from "../views/upload-view.js";
 
+/**
+ * Searches for GIFs based on a search string.
+ * @param {string} searchString - The search string to query GIFs.
+ * @returns {Promise<string>} - A promise that resolves to the HTML representation of the search results.
+ */
 export const searchByString = async (searchString) => {
   try {
     const data = await fetch(
@@ -17,6 +22,11 @@ export const searchByString = async (searchString) => {
   }
 };
 
+/**
+ * Fetches GIFs by their IDs from the Giphy API.
+ * @param {string[]} ids - An array of GIF IDs.
+ * @returns {Promise} A promise that resolves to the rendered uploaded GIFs.
+ */
 export const getGifsById = async (ids) => {
   try {
     const data = await fetch(
@@ -29,6 +39,11 @@ export const getGifsById = async (ids) => {
   }
 };
 
+/**
+ * Uploads a GIF and updates the local storage with the ID of the uploaded GIF.
+ * @param {FormData} formdata - The FormData object containing the GIF to be uploaded.
+ * @throws {Error} Will display a failure confirmation and log an error message if there is a problem uploading the GIF.
+ */
 export const uploadGif = async (formdata) => {
   try {
     const data = await fetch(
@@ -51,6 +66,11 @@ export const uploadGif = async (formdata) => {
   }
 };
 
+/**
+ * Fetches and renders a random GIF.
+ * @returns {Promise} A Promise that resolves to the result of the renderRandomGif function.
+ * @throws {Error} Will log an error message if there is a problem fetching or rendering the random GIF.
+ */
 export const getRandomGif = async () => {
   try {
     const data = await fetch(
@@ -102,7 +122,6 @@ export const getTrendingData = async (offset = 0, limit = 20) => {
   }
 };
 
-
 /**
  * Retrieves details data for a given ID from the Giphy API.
  * @param {string} id - The ID of the GIF.
@@ -127,6 +146,12 @@ export const getDetailsData = async (id) => {
   }
 };
 
+/**
+ * Retrieves favorite GIFs by their IDs.
+ *
+ * @param {string[]} ids - An array of GIF IDs.
+ * @returns {Promise} A promise that resolves to the rendered favorite GIFs.
+ */
 export const getFavoriteGifsById = async (ids) => {
   try {
     const data = await fetch(

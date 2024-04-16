@@ -25,7 +25,7 @@ div#app {
 header {
   grid-area: header;
   height: 200px;
-  background: url("../images/giphy\ \(5\)\ \(2\).gif") no-repeat;
+  background: url("../images/Header.gif") no-repeat;
   background-size: 100% 100%;
   border-bottom: 3px solid rgba(236, 233, 240, 0.135);
 }

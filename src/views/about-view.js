@@ -10,9 +10,9 @@ export const aboutView = () => {
   return `
   <div id="aboutContainer">
      ${card(
-       "../../images/Ipetko8 (1).JPG",
+       "../../images/image.png",
        "Todor Savov",
-       "https://github.com/Petkov-Petko",
+       "https://github.com/todor-savov",
        "https://www.instagram.com/petko_zlatilov/",
        "https://www.facebook.com/petko.zl/"
      )}
