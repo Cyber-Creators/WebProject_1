@@ -38,7 +38,6 @@ export const uploadGif = async (formdata) => {
         body: formdata,
       }
     );
-
     document.querySelector("div#spinner").classList.add("hidden");
     displayConfirmation('success');
     const jsonData = await data.json();
