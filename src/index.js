@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (event.target.id === "confirm") {
-      document.querySelector("div#spinner").classList.add("hidden");
+      document.querySelector("div#complete").classList.add("hidden");
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
     }
@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       event.preventDefault();
       const formdata = new FormData();
       formdata.append("file", document.querySelector("input#file").files[0]);
+      document.querySelector("div#uploadForm").classList.add("hidden");
       document.querySelector("div#spinner").classList.remove("hidden");
       uploadGif(formdata);
     }
