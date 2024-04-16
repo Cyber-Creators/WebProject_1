@@ -3,6 +3,7 @@ import { renderUploadedGifs } from "../views/history-view.js";
 import { searchToHtml } from "../views/search-view.js";
 import { renderFavoriteGifs } from "../views/favorites-view.js";
 import { renderRandomGif } from "../views/random-view.js";
+import { displayConfirmation } from "../views/upload-view.js";
 
 export const searchByString = async (searchString) => {
   try {
@@ -37,11 +38,13 @@ export const uploadGif = async (formdata) => {
         body: formdata,
       }
     );
+    displayConfirmation('success');
     const jsonData = await data.json();
     const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
     uploadedGifs.push(jsonData.data.id);
     localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
   } catch (e) {
+    displayConfirmation('fail');
     console.log(e.message);
   }
 }
