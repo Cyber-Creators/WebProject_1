@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
 
-    /* Upload form */
+    /* Upload menu link */
     if (event.target.id === "uploadNav") {
       document.querySelector("div#container").innerHTML =
         await generateUploadForm();
@@ -95,6 +95,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
+    if (event.target.id === "confirm") {
+      document.querySelector("div#spinner").classList.add("hidden");
+      document.querySelector("div#container").innerHTML = await generateUploadForm();
+    }
+
   });
 
   /* Upload form submission */
@@ -103,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       event.preventDefault();
       const formdata = new FormData();
       formdata.append("file", document.querySelector("input#file").files[0]);
+      document.querySelector("div#spinner").classList.remove("hidden");
       uploadGif(formdata);
     }
   });
