@@ -21,7 +21,7 @@ const addToDOM = async (uploadedGifs) => {
   document.querySelector("div#container").innerHTML =
     uploadedGifs.length !== 0
       ? await getGifsById(uploadedGifs.join(","))
-      : "No Gif images uploaded.";
+      : `<div id="historyText">No Gif images uploaded.</div>`;
 };
 
 document.addEventListener("DOMContentLoaded", async () => {

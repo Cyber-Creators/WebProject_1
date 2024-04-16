@@ -683,6 +683,14 @@ footer {
   width: 100%;
 }
 
+#historyText {
+  text-align: center;
+  font-size: 33px;
+  padding-top: 15px;
+  color: rgba(203, 201, 201, 0.636);
+  text-shadow: 3px 3px 3px black;
+}
+/* upload */
 .spinner {
   position: fixed;
   top: 40%;
@@ -699,11 +707,15 @@ footer {
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  
+
   transform: translate(-50%, -50%);
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
