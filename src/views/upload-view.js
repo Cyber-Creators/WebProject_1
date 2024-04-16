@@ -8,3 +8,17 @@ export const generateUploadForm = async () => {
                 </form>
             </div>`;
 };
+
+export const displayConfirmation = async (arg) => {
+    if (arg === "success") {
+        document.querySelector("form#myUploadForm").innerHTML = 
+        `<h3>Upload completed!</h3>
+          <button id="confirm">OK</button>
+        `;
+    } else {
+        document.querySelector("form#myUploadForm").innerHTML = 
+        `<h3>Upload failed!</h3>
+          <button id="confirm">OK</button>
+        `;
+    }
+};
