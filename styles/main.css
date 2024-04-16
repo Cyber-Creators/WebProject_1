@@ -89,8 +89,13 @@ footer {
 }
 
 a.active {
-  color: white;
-  font-weight: bold;
+  background: rgb(2, 29, 78);
+  background: linear-gradient(
+    270deg,
+    rgba(2, 29, 78, 0.681) 0%,
+    rgba(31, 215, 232, 0.873) 60%
+  );
+  color: rgb(4, 4, 38);
 }
 
 /* Trending page (home page) */
@@ -683,6 +688,14 @@ footer {
   width: 100%;
 }
 
+#historyText {
+  text-align: center;
+  font-size: 33px;
+  padding-top: 15px;
+  color: rgba(203, 201, 201, 0.636);
+  text-shadow: 3px 3px 3px black;
+}
+/* upload */
 .spinner {
   position: fixed;
   top: 40%;
@@ -699,11 +712,15 @@ footer {
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  
+
   transform: translate(-50%, -50%);
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
