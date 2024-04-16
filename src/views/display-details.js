@@ -1,5 +1,4 @@
 import { getDetailsData } from "../requests/request-service.js";
-import { EMPTY_HEART } from "../common/constants.js";
 import { renderFavoriteStatus } from "../events/favorites-events.js";
 
 /**
