@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* Clicking on heart icons */
     if (event.target.classList.contains("favorite")) {
-      const movieId = event.target.dataset.movieId;
-      toggleFavoriteStatus(movieId);
+      const favoriteId = event.target.dataset.movieId;
+      toggleFavoriteStatus(favoriteId);
     }
 
     /* Favorites page */
