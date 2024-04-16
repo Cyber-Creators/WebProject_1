@@ -1,3 +1,8 @@
+/**
+ * Renders the uploaded GIF images using data from browser localStorage and giphy.com API calls
+ * @param {Object} jsonData The data returned by API call to giphy.com in JSON format
+ * @returns {string} HTML representation of the received data
+ */
 export const renderUploadedGifs = (jsonData) => 
 `<div id="history">
     ${jsonData.data

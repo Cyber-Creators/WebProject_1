@@ -1,3 +1,7 @@
+/**
+ * Generates HTML form to handle the upload process
+ * @returns {string} HTML representation of the form itself
+ */
 export const generateUploadForm = async () => {
   return `<div id="spinner" class="spinner hidden"></div>
             <div id="uploadForm">
@@ -18,6 +22,10 @@ export const generateUploadForm = async () => {
             </div>`;
 };
 
+/**
+ * Displays confirmation when the GIF image upload is completed
+ * @param {string} arg A flag indicating whether the POST request has been successful or not
+ */
 export const displayConfirmation = async (arg) => {
     if (arg === "success") {
         
