@@ -1,6 +1,6 @@
 export const generateUploadForm = async () => {
-  return `<div id="uploadForm">
-            <div id="spinner" class="spinner hidden"></div>
+  return `<div id="spinner" class="spinner hidden"></div>
+            <div id="uploadForm">
                 <form id="myUploadForm">
                 <label for="arquivo">Choose a file:</label>
                     <input type="file" id="file" name="file">
@@ -20,14 +20,18 @@ export const generateUploadForm = async () => {
 
 export const displayConfirmation = async (arg) => {
     if (arg === "success") {
-        document.querySelector("form#myUploadForm").innerHTML = 
-        `<h3>Upload completed!</h3>
-          <button id="confirm">OK</button>
+        document.querySelector("div#container").innerHTML = 
+        `<div id="complete">
+            <h3>Upload completed!</h3>
+            <button id="confirm">OK</button>
+         </div>
         `;
     } else {
-        document.querySelector("form#myUploadForm").innerHTML = 
-        `<h3>Upload failed!</h3>
-          <button id="confirm">OK</button>
+        document.querySelector("div#container").innerHTML = 
+        `<div id="complete">
+            <h3>Upload failed!</h3>
+            <button id="confirm">OK</button>
+        </div>
         `;
     }
 };
