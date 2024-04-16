@@ -38,12 +38,15 @@ export const uploadGif = async (formdata) => {
         body: formdata,
       }
     );
+
+    document.querySelector("div#spinner").classList.add("hidden");
     displayConfirmation('success');
     const jsonData = await data.json();
     const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
     uploadedGifs.push(jsonData.data.id);
     localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
   } catch (e) {
+    document.querySelector("div#spinner").classList.add("hidden");
     displayConfirmation('fail');
     console.log(e.message);
   }
