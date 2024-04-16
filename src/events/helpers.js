@@ -1,14 +1,14 @@
 /**
  * Shorthand for document.querySelector
  * @param {string} selector
- * @returns {Element}
+ * @return {Element}
  */
 export const q = (selector) => document.querySelector(selector);
 
 /**
  * Shorthand for document.querySelectorAll
  * @param {string} selector
- * @returns {NodeLists<Element>}
+ * @return {NodeLists<Element>}
  */
 export const qs = (selector) => document.querySelectorAll(selector);
 /**
@@ -16,11 +16,11 @@ export const qs = (selector) => document.querySelectorAll(selector);
  * @param {string} page - The page to set as active.
  */
 export const setActiveNav = (page) => {
-  const navs = qs("a.nav-link");
+  const navs = qs('a.nav-link');
 
   Array.from(navs).forEach((element) =>
-    element.getAttribute("data-page") === page
-      ? element.classList.add("active")
-      : element.classList.remove("active")
+    element.getAttribute('data-page') === page ?
+      element.classList.add('active') :
+      element.classList.remove('active'),
   );
 };

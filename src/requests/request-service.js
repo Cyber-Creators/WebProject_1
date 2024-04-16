@@ -1,19 +1,19 @@
-import { API_KEY } from "../common/constants.js";
-import { renderUploadedGifs } from "../views/history-view.js";
-import { searchToHtml } from "../views/search-view.js";
-import { renderFavoriteGifs } from "../views/favorites-view.js";
-import { renderRandomGif } from "../views/random-view.js";
-import { displayConfirmation } from "../views/upload-view.js";
+import { API_KEY } from '../common/constants.js';
+import { renderUploadedGifs } from '../views/history-view.js';
+import { searchToHtml } from '../views/search-view.js';
+import { renderFavoriteGifs } from '../views/favorites-view.js';
+import { renderRandomGif } from '../views/random-view.js';
+import { displayConfirmation } from '../views/upload-view.js';
 
 /**
  * Searches for GIFs based on a search string.
  * @param {string} searchString - The search string to query GIFs.
- * @returns {Promise<string>} - A promise that resolves to the HTML representation of the search results.
+ * @return {Promise<string>} - A promise that resolves to the HTML representation of the search results.
  */
 export const searchByString = async (searchString) => {
   try {
     const data = await fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchString}&limit=10`
+      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchString}&limit=10`,
     );
     const jsonData = await data.json();
     return searchToHtml(jsonData);
@@ -25,12 +25,12 @@ export const searchByString = async (searchString) => {
 /**
  * Fetches GIFs by their IDs from the Giphy API.
  * @param {string[]} ids - An array of GIF IDs.
- * @returns {Promise} A promise that resolves to the rendered uploaded GIFs.
+ * @return {Promise} A promise that resolves to the rendered uploaded GIFs.
  */
 export const getGifsById = async (ids) => {
   try {
     const data = await fetch(
-      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`
+      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`,
     );
     const jsonData = await data.json();
     return renderUploadedGifs(jsonData);
@@ -49,18 +49,18 @@ export const uploadGif = async (formdata) => {
     const data = await fetch(
       `https://upload.giphy.com/v1/gifs?api_key=${API_KEY}`,
       {
-        method: "POST",
+        method: 'POST',
         body: formdata,
-      }
+      },
     );
-    document.querySelector("div#spinner").classList.add("hidden");
+    document.querySelector('div#spinner').classList.add('hidden');
     displayConfirmation('success');
     const jsonData = await data.json();
-    const uploadedGifs = JSON.parse(localStorage.getItem("uploadedGifs"));
+    const uploadedGifs = JSON.parse(localStorage.getItem('uploadedGifs'));
     uploadedGifs.push(jsonData.data.id);
-    localStorage.setItem("uploadedGifs", JSON.stringify(uploadedGifs));
+    localStorage.setItem('uploadedGifs', JSON.stringify(uploadedGifs));
   } catch (e) {
-    document.querySelector("div#spinner").classList.add("hidden");
+    document.querySelector('div#spinner').classList.add('hidden');
     displayConfirmation('fail');
     console.log(e.message);
   }
@@ -68,13 +68,13 @@ export const uploadGif = async (formdata) => {
 
 /**
  * Fetches and renders a random GIF.
- * @returns {Promise} A Promise that resolves to the result of the renderRandomGif function.
+ * @return {Promise} A Promise that resolves to the result of the renderRandomGif function.
  * @throws {Error} Will log an error message if there is a problem fetching or rendering the random GIF.
  */
 export const getRandomGif = async () => {
   try {
     const data = await fetch(
-      `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`
+      `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`,
     );
     const jsonData = await data.json();
     return renderRandomGif(jsonData);
@@ -86,7 +86,7 @@ export const getRandomGif = async () => {
 /**
  * Fetches data from the specified URL.
  * @param {string} url - The URL to fetch data from.
- * @returns {Promise<any>} - A promise that resolves to the fetched data.
+ * @return {Promise<any>} - A promise that resolves to the fetched data.
  */
 export const getData = async (url) => {
   try {
@@ -102,7 +102,7 @@ export const getData = async (url) => {
  * Fetches trending GIF data from the Giphy API.
  * @param {number} offset - The offset for fetching the data.
  * @param {number} limit - The number of GIFs to fetch.
- * @returns {Promise<Array<Object>>} An array of processed GIF data objects.
+ * @return {Promise<Array<Object>>} An array of processed GIF data objects.
  * @throws {Error} If there is an error fetching the data.
  */
 export const getTrendingData = async (offset = 0, limit = 20) => {
@@ -125,7 +125,7 @@ export const getTrendingData = async (offset = 0, limit = 20) => {
 /**
  * Retrieves details data for a given ID from the Giphy API.
  * @param {string} id - The ID of the GIF.
- * @returns {Promise<Object>} - A promise that resolves to an object containing the processed data.
+ * @return {Promise<Object>} - A promise that resolves to an object containing the processed data.
  * @throws {Error} - If there is an error fetching the data.
  */
 export const getDetailsData = async (id) => {
@@ -134,9 +134,9 @@ export const getDetailsData = async (id) => {
     const data = await getData(url);
     const processedData = {
       url: data.data.images.original.url,
-      title: data.data.title ? data.data.title : "No title added",
-      username: data.data.username ? data.data.username : "No name added",
-      rating: data.data.rating ? data.data.rating : "No rating added",
+      title: data.data.title ? data.data.title : 'No title added',
+      username: data.data.username ? data.data.username : 'No name added',
+      rating: data.data.rating ? data.data.rating : 'No rating added',
       embed_url: data.data.embed_url,
     };
     return processedData;
@@ -150,12 +150,12 @@ export const getDetailsData = async (id) => {
  * Retrieves favorite GIFs by their IDs.
  *
  * @param {string[]} ids - An array of GIF IDs.
- * @returns {Promise} A promise that resolves to the rendered favorite GIFs.
+ * @return {Promise} A promise that resolves to the rendered favorite GIFs.
  */
 export const getFavoriteGifsById = async (ids) => {
   try {
     const data = await fetch(
-      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`
+      `https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${ids}`,
     );
     const jsonData = await data.json();
     return renderFavoriteGifs(jsonData);

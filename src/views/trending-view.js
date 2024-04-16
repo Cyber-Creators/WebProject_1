@@ -1,27 +1,27 @@
-import { getTrendingData } from "../requests/request-service.js";
+import { getTrendingData } from '../requests/request-service.js';
 
 /**
  * Creates a trigger element for loading more trending GIFs and sets up an IntersectionObserver to load more GIFs when the trigger is intersected.
  * @param {HTMLElement} container - The container element where the GIFs are being displayed.
- * @returns {HTMLElement} The container element with the trigger element appended.
+ * @return {HTMLElement} The container element with the trigger element appended.
  * @throws Will throw an error if there is a problem rendering the home page.
  */
-export async function renderHome() {
+export const renderHome = async () => {
   try {
     const data = await getTrendingData();
-    const container = document.createElement("div");
-    container.classList.add("trendingContainer");
+    const container = document.createElement('div');
+    container.classList.add('trendingContainer');
 
-    for (let el of data) {
-      const img = document.createElement("img");
+    for (const el of data) {
+      const img = document.createElement('img');
       img.src = el.url;
       img.id = el.id;
-      img.classList.add("giphyImg");
+      img.classList.add('giphyImg');
       container.appendChild(img);
     }
 
-    const triggerElement = document.createElement("div");
-    triggerElement.id = "load-more-trigger";
+    const triggerElement = document.createElement('div');
+    triggerElement.id = 'load-more-trigger';
     container.appendChild(triggerElement);
 
     const observer = new IntersectionObserver(
@@ -32,49 +32,49 @@ export async function renderHome() {
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
     observer.observe(triggerElement);
     return container;
   } catch (error) {
     console.log(`Error rendering home: ${error}`);
-    return "<h1>Error rendering home page</h1>";
+    return '<h1>Error rendering home page</h1>';
   }
-}
+};
 
 /**
  * Creates a title element for the trending section.
- * @returns {Node} The first child of a div element containing the trending title HTML.
+ * @return {Node} The first child of a div element containing the trending title HTML.
  */
-export function trendingTitle() {
+export const trendingTitle = () => {
   const html = `
     <h3 class="trending">
       <i class="fa-solid fa-arrow-trend-up fa-xl"></i>Trending
     </h3>
   `;
-  const div = document.createElement("div");
+  const div = document.createElement('div');
   div.innerHTML = html.trim();
   return div.firstChild;
-}
+};
 
 /**
  * Loads more trending GIFs into the container.
  * @param {HTMLElement} container - The container element where the GIFs are being displayed.
  * @throws Will throw an error if there is a problem loading the trending data.
  */
-async function loadMoreTrendingGIFs(container) {
+const loadMoreTrendingGIFs = async (container) => {
   try {
-    const currentCount = container.querySelectorAll(".giphyImg").length;
+    const currentCount = container.querySelectorAll('.giphyImg').length;
     const newData = await getTrendingData(currentCount);
 
-    for (let el of newData) {
-      const img = document.createElement("img");
+    for (const el of newData) {
+      const img = document.createElement('img');
       img.src = el.url;
       img.id = el.id;
-      img.classList.add("giphyImg");
+      img.classList.add('giphyImg');
       container.appendChild(img);
     }
   } catch (error) {
-    console.error("Error loading more trending GIFs:", error);
+    console.error('Error loading more trending GIFs:', error);
   }
-}
+};

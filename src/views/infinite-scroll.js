@@ -1,9 +1,9 @@
-import { getTrendingData } from "../requests/request-service.js";
-import { renderHome } from "./trending-view.js";
+import { getTrendingData } from '../requests/request-service.js';
+import { renderHome } from './trending-view.js';
 
 let offset = 0;
 
-async function loadMoreTrendingGIFs() {
+const loadMoreTrendingGIFs = async () => {
   try {
     offset += 20;
 
@@ -11,9 +11,9 @@ async function loadMoreTrendingGIFs() {
 
     renderHome(newData);
   } catch (error) {
-    console.error("Error loading more trending GIFs:", error);
+    console.error('Error loading more trending GIFs:', error);
   }
-}
+};
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -23,8 +23,8 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 1 }
+  { threshold: 1 },
 );
 
-const target = document.getElementById("load-more-trigger");
+const target = document.getElementById('load-more-trigger');
 observer.observe(target);
