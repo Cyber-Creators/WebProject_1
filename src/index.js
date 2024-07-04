@@ -19,6 +19,7 @@ if (!localStorage.getItem('uploadedGifs')) {
 }
 
 const addToDOM = async (uploadedGifs) => {
+
   document.querySelector('div#container').innerHTML =
     uploadedGifs.length !== 0 ?
       await getGifsById(uploadedGifs.join(',')) :
@@ -26,15 +27,16 @@ const addToDOM = async (uploadedGifs) => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const root = document.querySelector('div#container');
+
+
   setActiveNav('home');
   const container = q('#container');
-  container.appendChild(trendingTitle());
-  container.appendChild(await renderHome());
-  container.appendChild(details());
+  root.appendChild(trendingTitle());
+  root.appendChild(await renderHome());
+  root.appendChild(details());
 
-  // add global listener for "click" events -> filter clicks by element id
   document.addEventListener('click', async (event) => {
-    /* renderDetails */
     const detailsDiv = q('.divDetails');
     if (detailsDiv) {
       if (event.target.classList.contains('giphyImg')) {
@@ -51,19 +53,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if (event.target.id === 'about') {
       event.preventDefault();
-      document.querySelector('div#container').innerHTML = aboutView();
+      root.innerHTML = aboutView();
     }
+
     /* Search */
     if (event.target.id === 'searchBtn') {
       const searchString = document.querySelector('input#search').value;
-      document.querySelector('div#container').innerHTML = await searchByString(
+      root.innerHTML = await searchByString(
         searchString,
       );
     }
 
     /* Upload menu link */
     if (event.target.id === 'uploadNav') {
-      document.querySelector('div#container').innerHTML =
+      root.innerHTML =
         await generateUploadForm();
     }
 
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       event.preventDefault();
       const favorites = JSON.parse(localStorage.getItem('favorites'));
       if (favorites.length === 0) {
-        document.querySelector('div#container').innerHTML = `
+        r.innerHTML = `
         <div id="emptyFavorites">
           <div id="e">
            <p id="emptyTitle"> No favorite Gif images added yet.</p><br>
@@ -102,14 +105,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
       } else {
-        document.querySelector('div#container').innerHTML =
+        r.innerHTML =
           await getFavoriteGifsById(favorites.join(','));
       }
     }
 
     if (event.target.id === 'confirm') {
       document.querySelector('div#complete').classList.add('hidden');
-      document.querySelector('div#container').innerHTML =
+      r.innerHTML =
         await generateUploadForm();
     }
 
@@ -137,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     .addEventListener('keypress', async (event) => {
       if (event.key === 'Enter') {
         const searchString = document.querySelector('input#search').value;
-        document.querySelector('div#container').innerHTML =
+        r.innerHTML =
           await searchByString(searchString);
       }
     });
